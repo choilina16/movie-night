@@ -1,0 +1,13 @@
+{
+  "name": "movie-night-server",
+  "version": "1.0.0",
+  "description": "movie-night server side package.json",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
