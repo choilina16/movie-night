@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* color pallette */
+  --background: #14181c;
+  --orange: #f18701;
+  --green: #8ac926;
+  --blue: #4cc9f0;
+  --font: #abc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* body {
+  background-color: var(--background);
+} */
