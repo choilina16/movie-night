@@ -1,31 +1,30 @@
 import React from 'react';
 import './carousel.css';
+import { Carousel } from 'react-bootstrap';
 
-function Carousel() {
+function AppCarousel() {
     return (
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active" data-bs-interval="10000">
-            <img class="d-block w-100" alt="..."></img>
-          </div>
-          <div class="carousel-item" data-bs-interval="2000">
-            <img  class="d-block w-100" alt="..."></img>
-          </div>
-          <div class="carousel-item">
-            <img class="d-block w-100" alt="..."></img>
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
+        <div style={{ display: 'block', width: '100%', padding: 30 }}>
+      <h4>Welcome to Movie Night!</h4>
+      <Carousel>
+        <Carousel.Item interval={1500}>
+          <img
+            className="d-block w-100"
+src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"
+            alt="Image One"
+          />
+        </Carousel.Item>
+        <Carousel.Item interval={500}>
+          <img
+            className="d-block w-100"
+src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
+            alt="Image Two"
+          />
+        </Carousel.Item>
+      </Carousel>
+    </div>
     );
 }
 
 
-export default Carousel;
+export default AppCarousel;
