@@ -1,14 +1,6 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import { alpha, styled } from '@mui/material/styles';
-import InputBase from '@mui/material/InputBase';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
-// import Box from '@mui/material/Box';
-import Autocomplete from '@mui/material/Autocomplete';
-import Button from '@mui/material/Button';
+import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import './inputBox.css';
 
 const movieGenre = [
   { label: 'Action', id: 1 },
@@ -43,82 +35,57 @@ const movieLanguage = [
 // mui styling
 const useStyles = makeStyles({
   root: {
+    padding: '30px',
+  },
+  container: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    border: 'red',
+    backgroundColor: '#fff',
+    width: '100%',
+    padding: '30px',
   },
 });
-
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-  'label + &': {
-    marginTop: theme.spacing(3),
-  },
-  '& .MuiInputBase-input': {
-    borderRadius: 4,
-    position: 'relative',
-    backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
-    border: '1px solid #ced4da',
-    fontSize: 16,
-    width: 'auto',
-    padding: '10px 12px',
-    transition: theme.transitions.create([
-      'border-color',
-      'background-color',
-      'box-shadow',
-    ]),
-    // Use the system font instead of the default Roboto font.
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:focus': {
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-      borderColor: theme.palette.primary.main,
-    },
-  },
-}));
 
 function InputBox() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className="username-container">
-        {/* <TextField id="outlined-basic" label="Usernames" variant="outlined" /> */}
-        <FormControl variant="standard">
-          <InputLabel shrink htmlFor="bootstrap-input">
-            Bootstrap
-          </InputLabel>
-          <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input" />
-        </FormControl>
-        <Button variant="contained" size="small">
-          ADD
-        </Button>
-      </div>
+      <div className={classes.container}>
+        <Stack spacing={2} direction="column">
+          <TextField
+            id="outlined-basic"
+            label="Usernames"
+            variant="outlined"
+            sx={{ width: 300, p: 1 }}
+          />
+          <Button variant="contained" size="small" sx={{ width: 50 }}>
+            ADD
+          </Button>
 
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={movieGenre}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Genre" />}
-      />
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={movieLanguage}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Language" />}
-      />
-      <Button variant="contained">SUBMIT</Button>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={movieGenre}
+            sx={{ width: 300, p: 1 }}
+            renderInput={(params) => <TextField {...params} label="Genre" />}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={movieLanguage}
+            sx={{ width: 300, p: 1 }}
+            renderInput={(params) => <TextField {...params} label="Language" />}
+          />
+          <Button
+            className={classes.submitButton}
+            sx={{ width: 100 }}
+            variant="contained"
+          >
+            SUBMIT
+          </Button>
+        </Stack>
+      </div>
     </div>
   );
 }
