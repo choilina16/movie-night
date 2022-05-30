@@ -9,7 +9,10 @@ function AppCarousel() {
     return (
         <div class="carousel-container"> 
 
-      <h4>Welcome to Movie Night!</h4>
+      <div className="welcome">
+        <h4>WELCOME TO MOVIE NIGHT!</h4>
+      </div>
+    
       <Carousel>
         <Carousel.Item interval={1500}>
           <img
