@@ -1,25 +1,27 @@
 import React from 'react';
 import './carousel.css';
 import { Carousel } from 'react-bootstrap';
+import movie1 from '../../assets/cultural-revolution.png';
+import movie2 from '../../assets/cultural-revolution-1.png';
 
 function AppCarousel() {
 
     return (
-        <div class="carousel-container" style={{ display: 'block', width: '100%', padding: 30 }}> 
+        <div class="carousel-container"> 
 
       <h4>Welcome to Movie Night!</h4>
       <Carousel>
         <Carousel.Item interval={1500}>
           <img
-            className="d-block w-100"
-            src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122739/2-300x115.png"
+            className="d-block w-100 img"
+            src={movie1}
             alt="One"
           />
         </Carousel.Item>
         <Carousel.Item interval={500}>
           <img
-            className="d-block w-100"
-            src="https://media.geeksforgeeks.org/wp-content/uploads/20210425122716/1-300x115.png"
+            className="d-block w-100 img"
+            src={movie2}
             alt="Two"
           />
         </Carousel.Item>

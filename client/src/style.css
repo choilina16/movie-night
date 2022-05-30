@@ -23,5 +23,6 @@ html {
 
 body {
   background-color: var(--background);
-  overflow: hidden;
+  background-position: center 0px;
+  /* overflow: hidden; */
 }
