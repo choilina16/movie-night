@@ -12,6 +12,9 @@
   --green: #8ac926;
   --blue: #4cc9f0;
   --font: #abc;
+  --red: #da251e;
+
+  color: var(--font);
 }
 
 html {
