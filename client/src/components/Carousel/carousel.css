@@ -1,3 +1,8 @@
+.carousel-container {
+    background-color: var(--background);
+}
+
 h4 {
     text-align: center;
+    color: #fff;
 }
