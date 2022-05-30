@@ -1,0 +1,19 @@
+header {
+    background-color: var(--header);
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #fff;
+}
+
+span {
+    color: #DA251E;
+}
+
+.logo {
+    background-image: url('../../assets/mao-png.png');
+    width: 100px;
+    height: 100px;
+}

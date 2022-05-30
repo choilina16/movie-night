@@ -1,10 +1,10 @@
 import React from 'react';
-// import './style.css';
+import './header.css';
 
 function Header() {
     return (
         <header>
-            <p>[MAO FACE GOES HERE]</p>
+            <img class="logo" alt="logo"></img>
             <h1>MOVIE<span>NIGHT</span></h1>
         </header> 
     );

@@ -3,8 +3,10 @@ import './carousel.css';
 import { Carousel } from 'react-bootstrap';
 
 function AppCarousel() {
-  return (
-    <div style={{ display: 'block', width: '100%', padding: 30 }}>
+
+    return (
+        <div class="carousel-container" style={{ display: 'block', width: '100%', padding: 30 }}> 
+
       <h4>Welcome to Movie Night!</h4>
       <Carousel>
         <Carousel.Item interval={1500}>
