@@ -7,7 +7,7 @@
   padding: 0;
   /* color pallette */
   --header: #14181c;
-  --background: #1F252B;
+  --background: #1f252b;
   --orange: #f18701;
   --green: #8ac926;
   --blue: #4cc9f0;
@@ -23,4 +23,5 @@ html {
 
 body {
   background-color: var(--background);
+  overflow: hidden;
 }
