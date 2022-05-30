@@ -14,6 +14,7 @@ span {
 
 .logo {
     background-image: url('../../assets/mao-png.png');
+    background-repeat: no-repeat;
     width: 100px;
     height: 100px;
 }
