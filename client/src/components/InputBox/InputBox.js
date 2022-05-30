@@ -1,9 +1,6 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-import Button from '@mui/material/Button';
+import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import './inputBox.css';
 
 const movieGenre = [
   { label: 'Action', id: 1 },
@@ -35,11 +32,18 @@ const movieLanguage = [
   { label: 'French', id: 6 },
 ];
 
+// mui styling
 const useStyles = makeStyles({
   root: {
+    padding: '30px',
+  },
+  container: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#fff',
+    width: '100%',
+    padding: '30px',
   },
 });
 
@@ -47,28 +51,41 @@ function InputBox() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className="username-container">
-        <TextField id="outlined-basic" label="Usernames" variant="outlined" />
-        <Button variant="contained" size="small">
-          ADD
-        </Button>
-      </div>
+      <div className={classes.container}>
+        <Stack spacing={2} direction="column">
+          <TextField
+            id="outlined-basic"
+            label="Usernames"
+            variant="outlined"
+            sx={{ width: 300, p: 1 }}
+          />
+          <Button variant="contained" size="small" sx={{ width: 50 }}>
+            ADD
+          </Button>
 
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={movieGenre}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Genre" />}
-      />
-      <Autocomplete
-        disablePortal
-        id="combo-box-demo"
-        options={movieLanguage}
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Language" />}
-      />
-      <Button variant="contained">SUBMIT</Button>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={movieGenre}
+            sx={{ width: 300, p: 1 }}
+            renderInput={(params) => <TextField {...params} label="Genre" />}
+          />
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={movieLanguage}
+            sx={{ width: 300, p: 1 }}
+            renderInput={(params) => <TextField {...params} label="Language" />}
+          />
+          <Button
+            className={classes.submitButton}
+            sx={{ width: 100 }}
+            variant="contained"
+          >
+            SUBMIT
+          </Button>
+        </Stack>
+      </div>
     </div>
   );
 }
