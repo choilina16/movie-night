@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
 * {
+  font-family: 'Roboto Condensed', 'sans-serif';
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   /* color pallette */
-  --background: #14181c;
+  --header: #14181c;
+  --background: #1F252B;
   --orange: #f18701;
   --green: #8ac926;
   --blue: #4cc9f0;
@@ -14,6 +18,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* body {
+body {
   background-color: var(--background);
-} */
+}
