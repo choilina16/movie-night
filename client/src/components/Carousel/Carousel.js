@@ -12,7 +12,7 @@ import {
   Autocomplete,
   Stack,
   Button,
-  listClasses,
+  // listClasses,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -59,6 +59,7 @@ const useStyles = makeStyles({
 });
 
 function AppCarousel() {
+  // Deleting in 3, 2, 1...
   // JAMES DONT DELETE THIS
   // LOGIC FOR THE INPUT BOX
   const [usernames, setUsernames] = useState([]);
