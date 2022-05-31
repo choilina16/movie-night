@@ -5,16 +5,29 @@ header {
 }
 
 h1 {
-  color: #fff;
+  position: relative;
+  padding: 10px 10px 0px 10px;
 }
 
-span {
+.full-name {
+  color: #fff;
+  position: relative;
+  top: 7px;
+  left: .2em;
+}
+
+.single-word {
   color: var(--red);
 }
 
 .logo {
-  /* background-image: url('../../assets/mao-png.png');
-  background-repeat: no-repeat; */
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
+
+@media screen and (max-width: 661px) {
+  h1 {
+    position: relative;
+    text-align: center;
+  }
+};
