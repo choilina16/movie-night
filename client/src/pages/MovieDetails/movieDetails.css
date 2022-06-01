@@ -23,6 +23,7 @@
 
 .movie-poster span {
   color: var(--red);
+  text-transform: uppercase;
 }
 
 .movie-year {
@@ -32,6 +33,7 @@
 .movie-details h3 {
   color: var(--red);
   font-size: 40px;
+  text-transform: uppercase;
 }
 
 .movie-details hr {
