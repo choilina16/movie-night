@@ -37,6 +37,13 @@ h4 {
   padding-left: 10%;
 }
 
+/* USE TO MOVE MUI INPUT BOX */
+@media screen and (max-width: 991px) {
+  .carousel-container {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 661px) {
   .carousel-container {
     display: 'block';

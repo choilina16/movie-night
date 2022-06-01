@@ -4,7 +4,7 @@ import Footer from './components/Footer/Footer';
 import AppCarousel from './components/Carousel/Carousel';
 import PostSubmit from './pages/PostSubmit/PostSubmit';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
-// import * as ReactBootStrap from "react-bootstrap";
+
 
 function App() {
   return (
