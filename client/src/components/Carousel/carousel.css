@@ -30,6 +30,13 @@ h4 {
   height: 400px;
 }
 
+.input-box-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10%;
+}
+
 @media screen and (max-width: 661px) {
   .carousel-container {
     display: 'block';
@@ -47,3 +54,5 @@ h4 {
     height: 400px;
   }
 }
+
+/* 991 */
