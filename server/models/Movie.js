@@ -1,11 +1,15 @@
 const { Schema, model } = require('mongoose')
 
-const matchupSchema = new Schema({
+const strSchema = new Schema({
   movies: [
     {
       type: String,
     },
   ],
+    poster_url: {
+      type: String,
+      required: true
+    },  
     movie_url: {
       type: String,
       required: true
@@ -14,14 +18,10 @@ const matchupSchema = new Schema({
       type: String,
       required: true
     },
-    watchlist: {
-      type: Boolean,
-      required: true
-    },
-    film_id: {
+    tmdb_id: {
       type: String,
       required: true
-    },
+      },
     year: {
       type: String,
       required: true
@@ -30,7 +30,7 @@ const matchupSchema = new Schema({
       type: String,
       required: true
     },
-    genres: {
+    genre: {
       type: String,
       required: true
     },
@@ -59,4 +59,4 @@ const matchupSchema = new Schema({
 
 
 
-module.exports = Movie(matchupSchema);
+module.exports = Movie(strSchema);

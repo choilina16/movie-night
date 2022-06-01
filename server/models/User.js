@@ -1,5 +1,4 @@
 const { schema, model } = require('mongoose')
-const bcrypt = require('bcrypt')
 
 const movieSchema = require('./Movie')
 

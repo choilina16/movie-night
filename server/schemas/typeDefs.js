@@ -6,7 +6,7 @@ const typeDefs = gql`
     movies: [Movie]
   }
   type Movie {
-    movieId: ID!
+    tmdb_id: ID!
     poster_url: String
     movie_url: String
     title: String
@@ -16,7 +16,7 @@ const typeDefs = gql`
     language: String
     rating: String
     synopsis: String
-    director String
+    director: String
   }
 
   type Query {
