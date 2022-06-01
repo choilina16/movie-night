@@ -7,13 +7,7 @@ import { Carousel } from 'react-bootstrap';
 import movie1 from '../../assets/cultural-revolution.png';
 import movie2 from '../../assets/cultural-revolution-1.png';
 // importing in for MUI
-import {
-  TextField,
-  Autocomplete,
-  Stack,
-  Button,
-  listClasses,
-} from '@mui/material';
+import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 // lists that the user will choose from
@@ -63,12 +57,10 @@ function AppCarousel() {
   // LOGIC FOR THE INPUT BOX
   const [usernames, setUsernames] = useState([]);
   const [inputData, setInputData] = useState('');
-  // const [movie, setMovieGenre] = useState('');
-  // const [language, setMovieLanguage] = useState('');
-
-  // const handleAddButtonClick = (event) => {
-  //   const newUsername = {};
-  // };
+  const [movie, setMovieGenre] = useState('');
+  const [language, setMovieLanguage] = useState('');
+  console.log(language);
+  console.log(movie);
 
   // const handleFormSubmit = (event) => {
   //   // Preventing the default behavior of the form submit (which is to refresh the page)
@@ -86,9 +78,8 @@ function AppCarousel() {
     console.log(usernames);
   };
 
-  const handleChange = (event) => {
-    const { value } = event.target;
-    setInputData(value);
+  const handleInputChange = (e) => {
+    setInputData(e.target.value);
   };
 
   const classes = useStyles();
@@ -128,7 +119,7 @@ function AppCarousel() {
             label="Usernames"
             variant="outlined"
             value={inputData}
-            onChange={handleChange}
+            onChange={handleInputChange}
             helperText="Enter 1 username at a time"
             sx={{ width: 300, p: 1 }}
           />
@@ -146,6 +137,10 @@ function AppCarousel() {
           {/* choosing movie genre from list*/}
           <Autocomplete
             disablePortal
+            // inputValue={movie}
+            onInputChange={(event, newMovie) => {
+              setMovieLanguage(newMovie);
+            }}
             id="combo-box-demo"
             options={movieGenre}
             sx={{ width: 300, p: 1 }}
@@ -155,6 +150,10 @@ function AppCarousel() {
           {/* choosing movie language from list */}
           <Autocomplete
             disablePortal
+            // inputValue={language}
+            onInputChange={(event, newLanguage) => {
+              setMovieGenre(newLanguage);
+            }}
             id="combo-box-demo"
             options={movieLanguage}
             sx={{ width: 300, p: 1 }}
