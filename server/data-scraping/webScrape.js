@@ -28,7 +28,7 @@ async function scrapeData() {
       
     //   const singleMovieURL = "https://letterboxd.com" + watchlist[i];
       
-      const singleMovieURL = 'https://letterboxd.com/film/gilda';
+      const singleMovieURL = 'https://letterboxd.com/film/blade-runner/';
       const {data} =  await axios.get(singleMovieURL);
       //console.log(data);
 
@@ -104,7 +104,7 @@ async function scrapeData() {
     }
  
 // Invoke the above function
-scrapeData();
+// scrapeData();
 
 // TODO: add function to get page length
 // const browser = await puppeteer.launch({headless: false});
@@ -132,7 +132,7 @@ async function scrapeWatchlist(url){
   await browser.close();
 }
 
-// scrapeWatchlist(testURL);
+scrapeWatchlist(testURL);
 
 //*[@id="content"]/div/div[1]/section/ul/li[96]/div
 
@@ -158,21 +158,21 @@ async function scrapeWatchlist(url){
 //   await browser.close();
 // })();
 
-// async function autoScroll(page){
-//   await page.evaluate(async () => {
-//       await new Promise((resolve, reject) => {
-//           var totalHeight = 0;
-//           var distance = 100;
-//           var timer = setInterval(() => {
-//               var scrollHeight = document.body.scrollHeight;
-//               window.scrollBy(0, distance);
-//               totalHeight += distance;
+async function autoScroll(page){
+  await page.evaluate(async () => {
+      await new Promise((resolve, reject) => {
+          var totalHeight = 0;
+          var distance = 100;
+          var timer = setInterval(() => {
+              var scrollHeight = document.body.scrollHeight;
+              window.scrollBy(0, distance);
+              totalHeight += distance;
 
-//               if(totalHeight >= scrollHeight - window.innerHeight){
-//                   clearInterval(timer);
-//                   resolve();
-//               }
-//           }, 100);
-//       });
-//   });
-// }
+              if(totalHeight >= scrollHeight - window.innerHeight){
+                  clearInterval(timer);
+                  resolve();
+              }
+          }, 100);
+      });
+  });
+}
