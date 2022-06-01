@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import MovieNav from './MovieNav';
+import Cast from './Cast';
+import Genre from './Genre';
+import Language from './Language';
 import './movieDetails.css';
-import mao from '../../assets/children-of-troubled-times.png';
+import movie1 from '../../assets/children-of-troubled-times.jpg';
 // https://react-icons.github.io/react-icons/
 import { BsFillStarFill } from 'react-icons/bs';
 
 // this is all placeholder information!
-const MovieDetails = () => {
+export default function MovieDetails() {
+  const [currentPage, setCurrentPage] = useState('Cast');
+
+  const renderPage = () => {
+    if (currentPage === 'Cast') {
+      return <Cast />;
+    }
+    if (currentPage === 'Genre') {
+      return <Genre />;
+    }
+    return <Language />;
+  };
+
+  const handlePageChange = (page) => setCurrentPage(page);
+
   return (
+    // include nav bar later
     <div className="movie-details-container">
       <div className="movie-poster-container">
         <div className="movie-poster">
-          <img src={mao} alt="placeholder"></img>
+          <img src={movie1} alt="placeholder"></img>
           <p>
             DIRECTOR: <span>XINGZHI XU</span>
           </p>
@@ -30,13 +49,17 @@ const MovieDetails = () => {
               <BsFillStarFill size={'2em'} className="stars-color" />
             </p>
             <div className="movie-details-box">
-              <p>box will go here</p>
+              <MovieNav
+                currentPage={currentPage}
+                handlePageChange={handlePageChange}
+              />
+              {renderPage()}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="move-synopsis">
+      <div className="movie-synopsis">
         <p>
           Arise! Arise! Arise! A heart throbbing tale of a young Mao Zedong,
           savior of China, and persuer of justice to the working class. None
@@ -47,6 +70,4 @@ const MovieDetails = () => {
       </div>
     </div>
   );
-};
-
-export default MovieDetails;
+}
