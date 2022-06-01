@@ -40,8 +40,9 @@ async function scrapeData() {
         title: "",
         tmdb_id: "",
         year: "",
+        cast: [],
         genres: [],
-        language: "",
+        language: [],
         rating: "",
         synopsis: "",
         director: "",
@@ -57,6 +58,13 @@ async function scrapeData() {
       movieEntry.tmdb_id = $('body').attr('data-tmdb-id');
       movieEntry.year = $('small[class="number"]').children('a').text();
       
+      // const castList = $('#tab-cast').children(".cast-list").children('p').children('a');
+      const castList = $('.cast-list').children('p').children('a');
+      castList.each((idx, el) => {
+        const castMember = $(el).text();
+        cast.push(castMember);
+      });
+      movieEntry.cast = cast;
 
       
       const genreList = $('#tab-genres').children(".text-sluglist").first().children('p').children('a');
