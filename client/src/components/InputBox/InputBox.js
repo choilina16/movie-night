@@ -4,6 +4,7 @@ import { useState } from 'react';
 // importing in for MUI
 import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // lists that the user will choose from
 const movieGenre = [
@@ -44,6 +45,17 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     textAlign: 'center',
     width: '50%',
+  },
+  // inputBox: {
+
+  // }
+});
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#DA251E',
+    },
   },
 });
 
@@ -97,18 +109,20 @@ export default function InputBox() {
           value={inputData}
           onChange={handleInputChange}
           helperText="Enter 1 username at a time"
-          sx={{ width: 300, p: 1, }}
+          sx={{ width: 300, p: 1 }}
         />
-        {/* button to add the usernames */}
-        <Button
-          variant="contained"
-          size="small"
-          value="ADD"
-          onClick={handleAddUsername}
-          sx={{ width: 50 }}
-        >
-          ADD
-        </Button>
+        <ThemeProvider theme={theme}>
+          {/* button to add the usernames */}
+          <Button
+            variant="contained"
+            size="small"
+            value="ADD"
+            onClick={handleAddUsername}
+            sx={{ width: 50 }}
+          >
+            ADD
+          </Button>
+        </ThemeProvider>
 
         {/* choosing movie genre from list*/}
         <Autocomplete
@@ -135,15 +149,16 @@ export default function InputBox() {
           sx={{ width: 300, p: 1 }}
           renderInput={(params) => <TextField {...params} label="Language" />}
         />
-
-        {/* button to submit and bring you to next page where you will see the results of watch list*/}
-        <Button
-          className={classes.submitButton}
-          sx={{ width: 100 }}
-          variant="contained"
-        >
-          SUBMIT
-        </Button>
+        <ThemeProvider theme={theme}>
+          {/* button to submit and bring you to next page where you will see the results of watch list*/}
+          <Button
+            className={classes.submitButton}
+            sx={{ width: 100 }}
+            variant="contained"
+          >
+            SUBMIT
+          </Button>
+        </ThemeProvider>
       </Stack>
     </div>
   );
