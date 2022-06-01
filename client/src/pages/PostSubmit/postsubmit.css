@@ -1,0 +1,24 @@
+.card-box {
+    width: 18rem;
+    /* padding: 10px; */
+}
+
+/* .card-row {
+    padding: 10px;
+}
+
+.post-img {
+    width: 100%;
+    height: 350px;
+}
+
+@media screen and (max-width: 661px) {
+    .post-img {
+        width: 100%;
+        height: 150px;
+    }
+
+    .card-row {
+        padding: 0px;
+    }
+  } */
