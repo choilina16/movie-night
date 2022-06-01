@@ -42,25 +42,36 @@ async function scrapeData() {
     //   const singleMovieURL = "https://letterboxd.com" + watchlist[i];
       
       const singleMovieURL = 'https://letterboxd.com/film/gilda';
-      const movieData =  await axios.get(singleMovieURL);
-      console.log(movieData);
+      const {data} =  await axios.get(singleMovieURL);
+      //console.log(data);
 
-      const $ = cheerio.load(movieData);
-      console.log($)
+      const $ = cheerio.load(data);
+      // console.log($)
       const movieEntry = {
+        poster_url: "",
+        movie_url: "",
         title: "",
+        tmdb_id: "",
         year: "",
-        tmdb: "",
-        poster: "",
+        genres: "",
+        language: "",
+        // rating: undefined,
+        synopsis: "",
+        director: "",
+        
       }
       
-      const title = $('h1.headline-1');
-      console.log(title);
-      movieEntry.title = title.text;
-      movieEntry.year = $('h1 .headline-1', 'small .number').attr('a');
-      movieEntry.tmdb = $(".text-link.text-footer").children().next().attr('h ref');
-      movieEntry.poster = $(".poster .film-poster").children().first().attr('src');
-      // movieEntry.year = 
+      movieEntry.poster_url = $('meta[property="og:image"]').attr('content');
+      movieEntry.movie_url = $('meta[name="twitter:url"]').attr('content');
+      movieEntry.title = $('meta[name="twitter:title"]').attr('content');
+      movieEntry.tmdb_id = $('body').attr('data-tmdb-id');
+      movieEntry.year = $('small[class="number"]').children('a').text();
+      // movieEntry.genres = ;
+      // movieEntry.language = ;
+      // TODO: Splice rating at the first space so we only get the number
+      movieEntry.rating = $('meta[name="twitter:data2"]').attr('content');
+      movieEntry.synopsis = $('meta[property="og:description"]').attr('content');
+      movieEntry.director = $('meta[name="twitter:data1"]').attr('content');
 
       console.log(movieEntry);
 
