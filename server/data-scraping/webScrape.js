@@ -46,6 +46,7 @@ async function scrapeData() {
         rating: "",
         synopsis: "",
         director: "",
+        runtime: "",
       }
 
       const cast = [];
@@ -74,11 +75,19 @@ async function scrapeData() {
       });
       movieEntry.genres = genres;
 
+      const languageList = $('#tab-details').children('.text-sluglist').last().children('p').children('a');
+      languageList.each((idx, el) => {
+        const languageEl = $(el).text();
+        languages.push(languageEl)
+      });
+      movieEntry.language = languages;
+
       // movieEntry.language = ;
       // TODO: Splice rating at the first space so we only get the number
       movieEntry.rating = $('meta[name="twitter:data2"]').attr('content');
       movieEntry.synopsis = $('meta[property="og:description"]').attr('content');
       movieEntry.director = $('meta[name="twitter:data1"]').attr('content');
+      movieEntry.runtime = $('.text-footer').text();
 
       console.log(movieEntry);
 
