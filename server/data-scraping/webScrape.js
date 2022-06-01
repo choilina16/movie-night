@@ -4,19 +4,6 @@ const puppeteer = require('puppeteer')
 
 const testURL = 'https://letterboxd.com/noahneville/watchlist/';
 
-// axios(testURL)
-//   .then(response => {
-//     const html = response.data;
-//     console.log(html);
-//     const cheer = cheerio.load(html);
-//     const movies = [];
-
-//      cheer('.data-film-name', html).each(function() {
-//       const filmName = cheer(this).text();
-//       // const filmId = cheer('.data-film-id').text();
-//       movies.push({filmName, filmId})
-//     })
-//   });
 
 async function scrapeData() {
 
@@ -53,20 +40,32 @@ async function scrapeData() {
         title: "",
         tmdb_id: "",
         year: "",
-        genres: "",
+        genres: [],
         language: "",
-        // rating: undefined,
+        rating: "",
         synopsis: "",
         director: "",
-        
       }
+
+      const cast = [];
+      const genres = [];
+      const languages = [];
       
       movieEntry.poster_url = $('meta[property="og:image"]').attr('content');
       movieEntry.movie_url = $('meta[name="twitter:url"]').attr('content');
       movieEntry.title = $('meta[name="twitter:title"]').attr('content');
       movieEntry.tmdb_id = $('body').attr('data-tmdb-id');
       movieEntry.year = $('small[class="number"]').children('a').text();
-      // movieEntry.genres = ;
+      
+
+      
+      const genreList = $('#tab-genres').children(".text-sluglist").first().children('p').children('a');
+      genreList.each((idx, el) => {
+        const genreEl = $(el).text();
+        genres.push(genreEl);
+      });
+      movieEntry.genres = genres;
+
       // movieEntry.language = ;
       // TODO: Splice rating at the first space so we only get the number
       movieEntry.rating = $('meta[name="twitter:data2"]').attr('content');
