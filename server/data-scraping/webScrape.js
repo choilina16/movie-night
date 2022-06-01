@@ -20,34 +20,20 @@ const testURL = 'https://letterboxd.com/noahneville/watchlist/';
 async function scrapeData() {
 
     const {data} = await axios.get(testURL);
+    //console.log(data);
     const $ = cheerio.load(data);
     const filmList = $(".film-poster");
-    // console.log(filmList);
-    // Stores data for all countries
+    // Stores data for all films
     const films = [];
     // Use .each method to loop through the li we selected
     filmList.each((idx, el) => {
      // Object holding data for each movie
-    //  console.log(el);
-      const movie = { 
-        name: "", 
-        slug: "", 
-        year: "",
-        img: ""
-      };
-      // Select the text content of a and span elements
-      // Store the textcontent in the above object .attr('.data-film-name')
-      movie.name = $(el , 'data-film-name').attr('data-film-slug');
-      movie.slug = $(el).text('data-film-link');
-      movie.year = $(el).attr('.data-film-release-year');
-      movie.img = $( el , 'data-poster-url').attr();
-
-     
-      // Populate countries array with country data .val('data-poster-url');
+      const movie = $(el , 'data-film-name').attr('data-film-slug');
+      // Populate films  array with individual movie data
       films.push(movie);
     });
     // Logs countries array to the console
-    console.dir(films);
+    console.log(films);
     // Write countries array in countries.json file
     // fs.writeFile("films.json", JSON.stringify(films, null, 2), (err) => {
     //   if (err) {
