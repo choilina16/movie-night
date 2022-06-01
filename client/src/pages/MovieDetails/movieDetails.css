@@ -4,8 +4,11 @@
 
 .movie-poster-container {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
+}
+
+.movie-poster {
+  padding-right: 5%;
 }
 
 .movie-poster img {
@@ -15,10 +18,12 @@
 .movie-poster p {
   text-align: center;
   padding-top: 1rem;
+  font-size: 18px;
 }
 
 .movie-poster span {
   color: var(--red);
+  text-transform: uppercase;
 }
 
 .movie-year {
@@ -27,6 +32,8 @@
 
 .movie-details h3 {
   color: var(--red);
+  font-size: 40px;
+  text-transform: uppercase;
 }
 
 .movie-details hr {
@@ -37,6 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  padding: 2%;
 }
 
 .stars-color {
@@ -45,12 +53,18 @@
 
 .movie-details-box {
   border: 1px solid var(--font);
-}
-
-.movie-details-box p {
-  padding: 10px;
-}
-
-.move-synopsis {
+  padding: 15px;
+  height: 150px;
   text-align: center;
+}
+
+.movie-synopsis {
+  padding-top: 3rem;
+}
+
+.movie-synopsis p {
+  text-align: center;
+  font-size: 30px;
+  padding-right: 13%;
+  padding-left: 13%;
 }
