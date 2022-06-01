@@ -53,6 +53,7 @@ const useStyles = makeStyles({
 });
 
 function AppCarousel() {
+  // Deleting in 3, 2, 1...
   // JAMES DONT DELETE THIS
   // LOGIC FOR THE INPUT BOX
   const [usernames, setUsernames] = useState([]);
