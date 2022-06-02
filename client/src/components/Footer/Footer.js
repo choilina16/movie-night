@@ -4,7 +4,7 @@ import './footer.css';
 function Footer() {
   return (
     <footer>
-      <p>©movienight</p>
+        <p className='copyright'>©movienight</p>
     </footer>
   );
 }
