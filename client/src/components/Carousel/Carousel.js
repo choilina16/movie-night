@@ -45,10 +45,14 @@ const movieLanguage = [
 const useStyles = makeStyles({
   container: {
     display: 'flex',
+    position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
     width: '50%',
+    height: '500px',
+    backgroundColor: '#fff',
+
   },
 });
 

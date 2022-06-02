@@ -4,27 +4,10 @@
 
 .card-box {
     box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
-    width: 18rem;
     padding: 10px;
     margin: 20px;
 }
 
 .post-img {
-    height: 80%;
+    height: 75%;
 }
-
-/* @media screen and (max-width: 991px) {
-
-      
-  } */
-
-
-/* @media screen and (max-width: 661px) {
-    .card-box {
-        margin: 6px;
-    }
-    
-    .post-img {
-        height: 55%;
-    }
-  } */
