@@ -114,6 +114,15 @@ async function scrapeData() {
 //   const [el] = page.$x('*[@id="content"]/div/div[1]/section/div[2]/div[3]/ul/li[5]/a');
 //   console.log(el);
 //   return el.innerHTML;
+
+// const filmList = $(".film-poster");
+    // // Stores data for all films in watchlist
+    // const watchlist = [];
+    // const movieModel = {};
+    // // Use .each method to loop through the li we selected
+    // filmList.each((idx, el) => {
+    //  // Object holding data for each movie
+    //   const movie = $(el , 'data-film-name').attr('data-film-slug');
  
 
 
@@ -122,14 +131,21 @@ async function scrapeWatchlist(url){
   const page = await browser.newPage();
   await page.goto(url);
 
-  const getWatchList = await page.evaluate(() => {
-    const entry = document.querySelectorAll('//*[@id="content"]/div/div[1]/section/ul/li[96]/div')
-    // data-film-link
-    return entry.value;
-  })
+  //const watchlistLinks = await page.$$eval('a.has-menu', anchors => {return anchors.map(a => a.href)});
 
-  console.log(getWatchList);
-  await browser.close();
+  const watchlistLinks = await Promise.all((await page.$$('a.has-menu')).map(async a => {
+    return await (await a.getProperty('href')).jsonValue();
+  }));
+  console.log(watchlistLinks);
+
+  // const getWatchList = await page.evaluate(() => {
+  //   const entry = page.$$('.data-film-link');
+  //   console.log(entry);
+  //   return entry.value;
+  // })
+
+  // console.log(getWatchList);
+  browser.close();
 }
 
 scrapeWatchlist(testURL);
