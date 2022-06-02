@@ -1,5 +1,5 @@
-const { schema, model } = require('mongoose')
-const bcrypt = require('bcrypt')
+const { Schema, model } = require('mongoose')
+
 
 const movieSchema = require('./Movie')
 
@@ -20,4 +20,7 @@ const userSchema = new Schema(
       },
     }
   );
-module.exports = User(userSchema);
+
+const User = model('User', userSchema);
+
+module.exports = User;
