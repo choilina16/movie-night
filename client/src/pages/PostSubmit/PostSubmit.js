@@ -48,7 +48,7 @@ const PostSubmit = () => {
       {
         image:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Seven_Samurai_poster.jpg/1200px-Seven_Samurai_poster.jpg",
-        title: "Michael Jordan",
+        title: "Seven Samurai",
         text: "Jawdropping picture",
       },
       {
@@ -76,21 +76,22 @@ const PostSubmit = () => {
       },
     ];
   
+    // Flippable Cards
     const renderCard = (card, index) => {
       return (
-        <Card key={index} className="box card-box col-4">
+        <Card style={{ width: '18rem' }} key={index} className="box card-box col-lg-3">
           <Card.Img variant="top" src={card.image} className="post-img"/>
           <Card.Body>
-            <Card.Title>{card.title}</Card.Title>
-            <Card.Text>{card.text}</Card.Text>
+            <Card.Title className="card-title">{card.title}</Card.Title>
+            <Card.Text className="card-text">{card.text}</Card.Text>
           </Card.Body>
         </Card>
       );
     };
   
     return <div className="container">
-              <div className="row">
-                {cardInfo.map(renderCard)}
+              <div className="row card-row">
+                  {cardInfo.map(renderCard)}
               </div>
            </div>;
   };
