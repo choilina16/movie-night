@@ -78,7 +78,7 @@ const PostSubmit = () => {
   
     const renderCard = (card, index) => {
       return (
-        <Card key={index} className="box card-box col-lg-3">
+        <Card style={{ width: '18rem' }} key={index} className="box card-box col-lg-3">
           <Card.Img variant="top" src={card.image} className="post-img"/>
           <Card.Body>
             <Card.Title>{card.title}</Card.Title>
