@@ -20,7 +20,7 @@ function AppCarousel() {
         <Grid item xs={12} lg={6}>
           <div className="carousel-container">
             <div className="welcome">
-              <h4>WELCOME TO MOVIE NIGHT!</h4>
+              <h4>WELCOME TO MOVIE<span className="night">NIGHT</span></h4>
             </div>
 
             <Carousel>
