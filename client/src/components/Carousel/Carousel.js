@@ -15,6 +15,7 @@ function AppCarousel() {
 
     <div className="carousel-input-container">
       {/* CAROUSEL */}
+
       <Grid container spacing={3}>
         <Grid item xs={12} lg={6}>
           <div className="carousel-container">
@@ -30,6 +31,7 @@ function AppCarousel() {
                 <img className="d-block w-100 img" src={movie2} alt="Two" />
               </Carousel.Item>
             </Carousel>
+
           </div>
         </Grid>
 
