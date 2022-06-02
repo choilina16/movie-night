@@ -30,7 +30,7 @@ const strSchema = new Schema({
       type: String,
       required: true
     },
-    genre: {
+    genres: {
       type: String,
       required: true
     },
