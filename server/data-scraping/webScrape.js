@@ -127,15 +127,37 @@ async function scrapeData() {
 
 
 async function scrapeWatchlist(url){
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: false,
+    });
   const page = await browser.newPage();
-  await page.goto(url);
+  await page.goto(url, {waitUntil: 'networkidle2'});
+  console.log(page)
 
-  //const watchlistLinks = await page.$$eval('a.has-menu', anchors => {return anchors.map(a => a.href)});
+  //const watchlistLinks = await page.$(".film-poster");
 
-  const watchlistLinks = await Promise.all((await page.$$('a.has-menu')).map(async a => {
-    return await (await a.getProperty('href')).jsonValue();
-  }));
+  // const watchlistLinks = await page.$$eval('.film-poster > .react-component .poster', (watchlistLinks) => 
+  //   watchlistLinks.map((watchlistLink) => watchlistLink.getAttribute('data-film-link')));
+
+//*[@id="content"]/div/div[1]/section/ul/li[1]/div/div/a
+
+  // const watchlistLinks = await Promise.all((await page.$$('.has-menu')).map(async a => {
+  //   return await (await a.getProperty('href')).jsonValue();
+  // }));
+
+  // const watchlistLinks = await Promise.all((await page.$$('.has-menu')).map(async a => {
+  //   return await (await a.getProperty('href')).jsonValue();
+  // }));
+
+  let watchlistLinks = await page.$$eval('a.has-menu', (titleLinkEls) => {
+    return titleLinkEls.map((titleLinkEl) => {
+        let link = titleLinkEl.getAttribute('href')
+        return link;
+    });
+  });
+
+  
   console.log(watchlistLinks);
 
   // const getWatchList = await page.evaluate(() => {
@@ -145,7 +167,7 @@ async function scrapeWatchlist(url){
   // })
 
   // console.log(getWatchList);
-  browser.close();
+  await browser.close();
 }
 
 scrapeWatchlist(testURL);
