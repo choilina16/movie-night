@@ -107,7 +107,7 @@ function AppCarousel() {
         </Carousel>
       </div>
 
-{/* DELETE AND UNCOMMENT LINES 8-10 TO CENTER CAROUSEL */}
+{/* DELETE AND UNCOMMENT LINES 8-10 (CSS) TO CENTER CAROUSEL */}
       {/* INPUT BOX */}
       <div className={classes.container}>
         <Stack>
