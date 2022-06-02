@@ -3,8 +3,9 @@ import * as React from 'react';
 import { useState } from 'react';
 // importing in for MUI
 import { TextField, Autocomplete, Stack, Button } from '@mui/material';
-import { makeStyles } from '@mui/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+
+import './inputBox.css';
 
 // lists that the user will choose from
 const movieGenre = [
@@ -37,24 +38,26 @@ const movieLanguage = [
   { label: 'French', id: 6 },
 ];
 
-// mui styling
-const useStyles = makeStyles({
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    textAlign: 'center',
-    width: '50%',
-  },
-  // inputBox: {
-
-  // }
-});
-
+// MUI styling for changing colors
 const theme = createTheme({
   palette: {
     primary: {
       main: '#DA251E',
+    },
+  },
+});
+
+// MUI styling for the username input box
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#abc',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#abc',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#abc',
     },
   },
 });
@@ -88,10 +91,8 @@ export default function InputBox() {
     setInputData(e.target.value);
   };
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.container}>
+    <div>
       <Stack>
         {/* where the usernames will popular */}
         <div className="list">
@@ -102,25 +103,28 @@ export default function InputBox() {
         </div>
 
         {/* input box for the usernames */}
-        <TextField
-          id="outlined-basic"
+        <CssTextField
           label="Usernames"
+          id="custom-css-outlined-input input-box"
           variant="outlined"
           value={inputData}
           onChange={handleInputChange}
           helperText="Enter 1 username at a time"
-          sx={{ width: 300, p: 1 }}
+          sx={{ width: 400, p: 1 }}
         />
+
         <ThemeProvider theme={theme}>
           {/* button to add the usernames */}
           <Button
             variant="contained"
+            id="username-button"
             size="small"
             value="ADD"
             onClick={handleAddUsername}
-            sx={{ width: 50 }}
+            sx={{ width: 30 }}
+            style={{ margin: '0 auto', display: 'flex' }}
           >
-            ADD
+            +
           </Button>
         </ThemeProvider>
 
@@ -133,7 +137,7 @@ export default function InputBox() {
           }}
           id="combo-box-demo"
           options={movieGenre}
-          sx={{ width: 300, p: 1 }}
+          sx={{ width: 400, p: 1 }}
           renderInput={(params) => <TextField {...params} label="Genre" />}
         />
 
@@ -146,15 +150,15 @@ export default function InputBox() {
           }}
           id="combo-box-demo"
           options={movieLanguage}
-          sx={{ width: 300, p: 1 }}
+          sx={{ width: 400, p: 1 }}
           renderInput={(params) => <TextField {...params} label="Language" />}
         />
         <ThemeProvider theme={theme}>
           {/* button to submit and bring you to next page where you will see the results of watch list*/}
           <Button
-            className={classes.submitButton}
             sx={{ width: 100 }}
             variant="contained"
+            style={{ margin: '0 auto', display: 'flex' }}
           >
             SUBMIT
           </Button>
