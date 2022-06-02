@@ -11,3 +11,12 @@
 .post-img {
     height: 75%;
 }
+
+.card-title {
+    color: var(--background);
+    font-size: 10px;
+}
+
+.card-text {
+    color: var(--background);
+}

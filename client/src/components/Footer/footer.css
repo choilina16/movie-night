@@ -6,3 +6,8 @@ footer {
 
   color: var(--font);
 }
+
+.copyright {
+  position: relative;
+  margin-right: 20px;
+}
