@@ -4,10 +4,11 @@ const { Movie, User } = require('../models');
 
 const resolvers = {
     Query: {
-        user: async (parent, { username }) => {
-            return await User.findById(username).populate('movies');
-          },
-    },
+        user: async () => {
+          return await User.findOne({username: username});
+        },
+      },
+    
     Mutation: {
         addUser: async (parent, args) => {
             const user = await User.create(args);
