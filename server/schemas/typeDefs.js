@@ -3,10 +3,9 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     username: String!
-    movies: [Movie]
+    savedMovies: [Movie]
   }
   type Movie {
-    
     poster_url: String!
     movie_url: String!
     title: String!
@@ -25,5 +24,8 @@ const typeDefs = gql`
     user: User
   }
 
+  type Mutation {
+    addUser: User
+  }
 `;
 module.exports = typeDefs;
