@@ -1,6 +1,6 @@
 // write & get from database
 const { Movie, User } = require('../models');
-const scrapeWatchlist = require('../data-scraping/webScrape');
+const {scrapeWatchlist, scrapeMoviePage } = require('../data-scraping/webScrape');
 
 const resolvers = {
     Query: {
@@ -11,10 +11,13 @@ const resolvers = {
     
     Mutation: {
         addUser: async (parent, args) => {
-            const data = await scrapeWatchlist(args);
-
-            const user = await User.create(data);
-            return user;
+          const username = args.username;
+          const data = await scrapeWatchlist(username);
+          console.log("what is this", args);
+          console.log(data);
+          const userModel = await scrapeMoviePage(username, data)
+          const user = await User.create(userModel);
+          return user;
         }
     },
 

@@ -127,27 +127,27 @@ function InputBox() {
   //   setMovieLanguage('');
   // };
 
-  const handleAddUsername = () => {
+  const handleAddUsername = async () => {
     const currentUsername = inputData;
     console.log(currentUsername);
     const newUsernames = [...usernames, currentUsername];
     setUsernames(newUsernames);
     setInputData('');
     // scrapeWatchlist(currentUsername);
-
+    console.log(newUsernames);
 
     //TODO: trying to add users to db
-    // try {
-    //   const { data } = addUser({
-    //     variables: { inputData },
-    //   });
-    //   console.log(data);
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const { data } = await addUser({
+        variables: currentUsername,
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
     
 
-    console.log(newUsernames);
+   
   };
 
   const handleInputChange = (e) => {

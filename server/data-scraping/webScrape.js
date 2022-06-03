@@ -3,13 +3,21 @@ const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 
 //const testURL = "https://letterboxd.com/noahneville/watchlist/";
+// WelcomeToChilis: anthony's username
 
 async function scrapeWatchlist(username) {
   console.log(username);
-  const watchlistURL = 'https://letterboxd.com/' + username+ '/watchlist/';
-  const { data } = await axios.get(watchlistURL);
-  
-  const $ = cheerio.load(data);
+  try {
+    // if(username) {
+      console.log(username);
+      const watchlistURL = 'https://letterboxd.com/' + username + '/watchlist/';
+      const { data } = await axios.get(watchlistURL);
+     //let something = await axios.get(watchlistURL);
+     //console.log(something);
+    //  return data;
+    // } 
+    
+    const $ = cheerio.load(data);
   const filmList = $(".film-poster");
   // Stores data for all films in watchlist
   const watchlist = [];
@@ -22,12 +30,18 @@ async function scrapeWatchlist(username) {
     watchlist.push(movieURL);
   });
    
-  //console.log(watchlist);
+  console.log(watchlist);
  
   console.log('Watchlist Scrape Complete.');
   console.log(`Starting individual data scrape on all ${watchlist.length} films in your watchlist.`)
-  scrapeMoviePage(username, watchlist);
-}
+  //await axios.get(watchlistURL).then(res => {console.log("is this undefined", res)}).catch(err); 
+  //scrapeMoviePage(username.username, watchlist);
+  return watchlist;
+  }catch(err) {
+    console.log(err);
+  }
+};
+  
 
 //cheerioWatchlist('noahneville');
 
@@ -110,8 +124,7 @@ async function scrapeMoviePage(username, array) {
   return userModel;
 }
 
-module.exports = scrapeWatchlist;
-
+module.exports = { scrapeWatchlist, scrapeMoviePage }
 
 
 // Code Graveyard: 
