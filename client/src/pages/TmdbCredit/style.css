@@ -1,10 +1,16 @@
-.header-container {
+.container {
     display: flex;
     width: 100%;
     margin: 20px;
 }
 
-.header-text {
+.tmdb {
+    display: block;
+    width: 50%;
+    height: 50%;
+}
+
+.tmdbCredit {
     font-size: 50px;
     width: 100%;
     display: flex;
