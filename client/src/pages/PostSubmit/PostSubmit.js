@@ -1,5 +1,6 @@
 import React from 'react';
 import FlipCard from './FlipCard';
+import './postsubmit.scss'
 
 const PostSubmit = () => {
 
@@ -93,6 +94,10 @@ const PostSubmit = () => {
         <div className="container">
             {/* Card Row */}
             <div className="row card-row"> 
+              <div className="header-container">
+                {/* note: Could make it so each 3 usernames populate in place of 'you' (ex. Here's some movies a, b, and c have in common) */}
+                <p className="header-text">Here's some movies you have in common...</p>
+              </div>  
             {/* ...mapping over each object in the `Cards` array of objects */}
             {cards.map((card) => (
                 <FlipCard card={card} />
