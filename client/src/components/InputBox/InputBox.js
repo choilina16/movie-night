@@ -13,8 +13,8 @@ import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import './inputBox.css';
 
-// TODO:
-import scrapeWatchlist from '../../util/webScraper'
+// // TODO:
+// import scrapeWatchlist from '../../util/webScraper'
 
 // lists that the user will choose from
 const movieGenre = [
@@ -133,7 +133,7 @@ function InputBox() {
     const newUsernames = [...usernames, currentUsername];
     setUsernames(newUsernames);
     setInputData('');
-    scrapeWatchlist(currentUsername);
+    // scrapeWatchlist(currentUsername);
 
 
     //TODO: trying to add users to db
