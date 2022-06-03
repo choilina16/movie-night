@@ -127,7 +127,7 @@ function InputBox() {
   //   setMovieLanguage('');
   // };
 
-  const handleAddUsername = () => {
+  const handleAddUsername = async () => {
     const currentUsername = inputData;
     console.log(currentUsername);
     const newUsernames = [...usernames, currentUsername];
@@ -138,8 +138,8 @@ function InputBox() {
 
     //TODO: trying to add users to db
     try {
-      const { data } = addUser({
-        variables: 'noahneville',
+      const { data } = await addUser({
+        variables: currentUsername,
       });
       console.log(data);
     } catch (err) {

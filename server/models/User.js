@@ -11,7 +11,7 @@ const userSchema = new Schema(
         unique: true,
       },
       // set savedMovies to be an array of data that adheres to the movieSchema
-      movies: [movieSchema],
+      savedMovies: [movieSchema],
     },
     // set this to use virtual below
     {

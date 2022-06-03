@@ -10,7 +10,7 @@ async function scrapeWatchlist(username) {
   try {
     // if(username) {
       console.log(username);
-      const watchlistURL = 'https://letterboxd.com/' + username.username + '/watchlist/';
+      const watchlistURL = 'https://letterboxd.com/' + username + '/watchlist/';
       const { data } = await axios.get(watchlistURL);
      //let something = await axios.get(watchlistURL);
      //console.log(something);
@@ -35,7 +35,8 @@ async function scrapeWatchlist(username) {
   console.log('Watchlist Scrape Complete.');
   console.log(`Starting individual data scrape on all ${watchlist.length} films in your watchlist.`)
   //await axios.get(watchlistURL).then(res => {console.log("is this undefined", res)}).catch(err); 
-  scrapeMoviePage(username.username, watchlist);
+  //scrapeMoviePage(username.username, watchlist);
+  return watchlist;
   }catch(err) {
     console.log(err);
   }
@@ -114,7 +115,7 @@ async function scrapeMoviePage(username, array) {
   //console.log(movieSchema);
   
   const userModel = {
-    username: username.username,
+    username: username,
     savedMovies: movieSchema
   }
 
@@ -123,8 +124,7 @@ async function scrapeMoviePage(username, array) {
   return userModel;
 }
 
-module.exports = scrapeWatchlist;
-
+module.exports = { scrapeWatchlist, scrapeMoviePage }
 
 
 // Code Graveyard: 
