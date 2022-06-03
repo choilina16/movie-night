@@ -27,7 +27,8 @@ async function cheerioWatchlist(username) {
   //   fullWatchlist.push(fullURL);
   //   i++;
   // };
-  // console.log(fullWatchlist);
+  console.log('Watchlist Scrape Complete.');
+  console.log(`Starting individual data scrape on all ${watchlist.length} films in your watchlist.`)
   scrapeMoviePage(username, watchlist);
 }
 
@@ -37,6 +38,7 @@ async function scrapeMoviePage(username, array) {
   //const singleMovieURL = "https://letterboxd.com/film/blade-runner/";
 
   const movieSchema = [];
+  const total = array.length;
   for (let i = 0; i < array.length; i++) {
     const { data } = await axios.get(array[i]);
     const $ = cheerio.load(data);
@@ -94,9 +96,11 @@ async function scrapeMoviePage(username, array) {
     movieEntry.runtime = $(".text-footer").text().trim().substr(0, 8).trimEnd();
   
     movieSchema.push(movieEntry);
+    console.log(`Data scraped for ${i + 1} out ${total} films in your watchlist.`)
+
   }
   
-  console.log(movieSchema);
+  //console.log(movieSchema);
   
   const userModel = {
     username: username,
