@@ -114,7 +114,7 @@ function InputBox() {
   const [language, setMovieLanguage] = useState('');
 
   // TODO: adding mutation
-  //const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
   //console.log(language);
   //console.log(movie);
 
@@ -138,11 +138,10 @@ function InputBox() {
 
     //TODO: trying to add users to db
     // try {
-    //   const { data } = await addUser({
+    //   const { data } = addUser({
     //     variables: { inputData },
     //   });
     //   console.log(data);
-    //   Auth.login(data.addUser.token);
     // } catch (err) {
     //   console.error(err);
     // }
