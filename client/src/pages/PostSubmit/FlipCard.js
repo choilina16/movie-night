@@ -4,7 +4,7 @@ import cn from "classnames";
 
 // `{ card }` param registers data from objects in the `Card` array of objects into this base model for however many objects exist 
 function FlipCard({ card }) {
-    
+     
     return (
         
        <div className="flip-card-outer">
