@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 // importing in for MUI
+import { makeStyles } from '@mui/styles';
 import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
@@ -45,6 +46,41 @@ const theme = createTheme({
       main: '#DA251E',
     },
   },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'black',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#abc',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#abc',
+          },
+          color: '#abc',
+        },
+      },
+    },
+  },
+});
+
+// MUI styling for font change
+const useStyles = makeStyles({
+  root: {
+    color: '#abc',
+  },
+  inputBox: {
+    '& .MuiFormLabel-root': {
+      color: '#abc',
+    },
+  },
+  helperText: {
+    '& .MuiFormHelperText-root': {
+      color: '#abc !important',
+    },
+  },
 });
 
 // MUI styling for the username input box
@@ -62,7 +98,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-export default function InputBox() {
+function InputBox() {
   // LOGIC FOR THE INPUT BOX
   const [usernames, setUsernames] = useState([]);
   const [inputData, setInputData] = useState('');
@@ -91,9 +127,11 @@ export default function InputBox() {
     setInputData(e.target.value);
   };
 
+  const classes = useStyles();
+
   return (
     <div>
-      <Stack>
+      <Stack className={classes.helperText} noValidate autoComplete="off">
         {/* where the usernames will popular */}
         <div className="list">
           {usernames.map((item) => {
@@ -106,11 +144,13 @@ export default function InputBox() {
         <CssTextField
           label="Usernames"
           id="custom-css-outlined-input input-box"
+          className={classes.inputBox}
           variant="outlined"
           value={inputData}
           onChange={handleInputChange}
           helperText="Enter 1 username at a time"
           sx={{ width: 400, p: 1 }}
+          inputProps={{ className: classes.root }}
         />
 
         <ThemeProvider theme={theme}>
@@ -129,30 +169,33 @@ export default function InputBox() {
         </ThemeProvider>
 
         {/* choosing movie genre from list*/}
-        <Autocomplete
-          disablePortal
-          // inputValue={movie}
-          onInputChange={(event, newMovie) => {
-            setMovieLanguage(newMovie);
-          }}
-          id="combo-box-demo"
-          options={movieGenre}
-          sx={{ width: 400, p: 1 }}
-          renderInput={(params) => <TextField {...params} label="Genre" />}
-        />
+        <ThemeProvider theme={theme}>
+          <Autocomplete
+            disablePortal
+            onInputChange={(event, newMovie) => {
+              setMovieLanguage(newMovie);
+            }}
+            id="combo-box-demo"
+            options={movieGenre}
+            sx={{ width: 400, p: 1 }}
+            className={classes.inputBox}
+            renderInput={(params) => <TextField {...params} label="Genre" />}
+          />
 
-        {/* choosing movie language from list */}
-        <Autocomplete
-          disablePortal
-          // inputValue={language}
-          onInputChange={(event, newLanguage) => {
-            setMovieGenre(newLanguage);
-          }}
-          id="combo-box-demo"
-          options={movieLanguage}
-          sx={{ width: 400, p: 1 }}
-          renderInput={(params) => <TextField {...params} label="Language" />}
-        />
+          {/* choosing movie language from list */}
+          <Autocomplete
+            disablePortal
+            // inputValue={language}
+            onInputChange={(event, newLanguage) => {
+              setMovieGenre(newLanguage);
+            }}
+            id="combo-box-demo"
+            options={movieLanguage}
+            sx={{ width: 400, p: 1 }}
+            className={classes.inputBox}
+            renderInput={(params) => <TextField {...params} label="Language" />}
+          />
+        </ThemeProvider>
         <ThemeProvider theme={theme}>
           {/* button to submit and bring you to next page where you will see the results of watch list*/}
           <Button
@@ -167,3 +210,5 @@ export default function InputBox() {
     </div>
   );
 }
+
+export default InputBox;

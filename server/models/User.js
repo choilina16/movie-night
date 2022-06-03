@@ -1,5 +1,5 @@
-const { schema, model } = require('mongoose')
-const bcrypt = require('bcrypt')
+const { Schema, model } = require('mongoose')
+
 
 const movieSchema = require('./Movie')
 
@@ -11,7 +11,7 @@ const userSchema = new Schema(
         unique: true,
       },
       // set savedMovies to be an array of data that adheres to the movieSchema
-      savedMovies: [movieSchema],
+      movies: [movieSchema],
     },
     // set this to use virtual below
     {
@@ -20,4 +20,7 @@ const userSchema = new Schema(
       },
     }
   );
-module.exports = User(userSchema);
+
+const User = model('User', userSchema);
+
+module.exports = User;
