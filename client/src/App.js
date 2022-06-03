@@ -26,7 +26,7 @@ function App() {
         {/* PostSubmit STAYS HERE FOR STYLING PURPOSES RN */}
         <PostSubmit />
         {/* MovieDetails STAYS HERE FOR STYLING PURPOSES RN */}
-        <MovieDetails />
+        {/* <MovieDetails /> */}
       </div>
     </ApolloProvider>
   );
