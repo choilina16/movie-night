@@ -15,5 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "dotenv-webpack": "^7.1.0"
   }
 }

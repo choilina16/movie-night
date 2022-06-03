@@ -1,4 +1,6 @@
-// const { Movie, User } = require('../models');
+// write & get from database
+
+const { Movie, User } = require('../models');
 
 // const resolvers = {
 //     Query: {
@@ -11,4 +13,7 @@
 
 // },
 
-// module.exports = resolvers;
+module.exports = resolvers;
+
+
+// when adding username it will start the get right away because it takes a long time

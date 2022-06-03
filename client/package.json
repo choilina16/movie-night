@@ -13,6 +13,8 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
+    "dotenv": "^16.0.1",
+    "dotenv-webpack": "^7.1.0",
     "graphql": "^15.4.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",

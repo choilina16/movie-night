@@ -76,13 +76,14 @@ const PostSubmit = () => {
       },
     ];
   
+    // Flippable Cards
     const renderCard = (card, index) => {
       return (
         <Card style={{ width: '18rem' }} key={index} className="box card-box col-lg-3">
           <Card.Img variant="top" src={card.image} className="post-img"/>
           <Card.Body>
-            <Card.Title>{card.title}</Card.Title>
-            <Card.Text>{card.text}</Card.Text>
+            <Card.Title className="card-title">{card.title}</Card.Title>
+            <Card.Text className="card-text">{card.text}</Card.Text>
           </Card.Body>
         </Card>
       );
