@@ -6,22 +6,28 @@ import movie2 from "../../assets/cultural-revolution-1.png";
 import InputBox from "../InputBox/InputBox";
 import Grid from "@mui/material/Grid";
 
-require("dotenv").config({ debug: true });
-console.log("hi");
-console.log(process.env);
-
 function AppCarousel() {
-  // https://image.tmdb.org/t/p/original/
-  fetch(
-    "https://api.themoviedb.org/3/movie/popular?api_key=10c8394b98fc5c8ccc47c5ae2b948bc9&language=en-US&page=1"
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(
-        "https://image.tmdb.org/t/p/original" + data.results[0].poster_path
-      );
-      console.log(process.env.MOVIE_DB_API);
-    });
+  const [movieList, setMovieList] = React.useState([]);
+
+  const getMovies = async () => {
+    fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=10c8394b98fc5c8ccc47c5ae2b948bc9&language=en-US&page=1"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const movie_list = [];
+        for (const result of data.results) {
+          movie_list.push(
+            "https://image.tmdb.org/t/p/original" + result.poster_path
+          );
+        }
+        setMovieList(movie_list);
+      });
+  };
+
+  React.useEffect(() => {
+    getMovies();
+  }, []);
 
   return (
     // api call to get the popular movies tmdb- front end js file
@@ -43,12 +49,13 @@ function AppCarousel() {
             </div>
 
             <Carousel>
-              <Carousel.Item interval={1500}>
-                <img className="d-block w-100 img" src={movie1} alt="One" />
-              </Carousel.Item>
-              <Carousel.Item interval={500}>
-                <img className="d-block w-100 img" src={movie2} alt="Two" />
-              </Carousel.Item>
+              {movieList.map(function (movie) {
+                return (
+                  <Carousel.Item interval={500}>
+                    <img className="d-block w-500 img" src={movie} alt="haha" />
+                  </Carousel.Item>
+                );
+              })}
             </Carousel>
           </div>
         </Grid>
