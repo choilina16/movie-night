@@ -4,7 +4,7 @@ export const QUERY_USER = gql`
   query user {
     user {
       username
-      movies {
+      savedMovies {
         poster_url
         movie_url
         title
