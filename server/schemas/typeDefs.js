@@ -6,7 +6,6 @@ const typeDefs = gql`
     movies: [Movie]
   }
   type Movie {
-    
     poster_url: String!
     movie_url: String!
     title: String!
@@ -25,5 +24,8 @@ const typeDefs = gql`
     user: User
   }
 
+  type Mutation {
+    addUser: User
+  }
 `;
 module.exports = typeDefs;
