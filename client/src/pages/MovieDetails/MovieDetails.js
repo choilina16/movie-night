@@ -5,8 +5,8 @@ import Genre from './Genre';
 import Language from './Language';
 import './movieDetails.css';
 import movie1 from '../../assets/children-of-troubled-times.jpg';
-// https://react-icons.github.io/react-icons/
-import { BsFillStarFill } from 'react-icons/bs';
+import Rating from '@mui/material/Rating';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // this is all placeholder information!
 export default function MovieDetails() {
@@ -36,6 +36,14 @@ export default function MovieDetails() {
     return <Language />;
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#da251e',
+      },
+    },
+  });
+
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
@@ -56,11 +64,15 @@ export default function MovieDetails() {
             <p>‘风云儿女’</p>
             <hr></hr>
             <p className="stars">
-              <BsFillStarFill size={'2em'} className="stars-color" />
-              <BsFillStarFill size={'2em'} className="stars-color" />
-              <BsFillStarFill size={'2em'} className="stars-color" />
-              <BsFillStarFill size={'2em'} className="stars-color" />
-              <BsFillStarFill size={'2em'} className="stars-color" />
+              <ThemeProvider theme={theme}>
+                <Rating
+                  name="half-rating-read"
+                  defaultValue={3.5}
+                  precision={0.5}
+                  size="large"
+                  readOnly
+                />
+              </ThemeProvider>
             </p>
             <div className="movie-details-box">
               <MovieNav
