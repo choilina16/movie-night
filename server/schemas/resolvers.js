@@ -1,6 +1,6 @@
 // write & get from database
-
 const { Movie, User } = require('../models');
+const scrapeWatchlist = require('../data-scraping/webScrape');
 
 const resolvers = {
     Query: {
@@ -11,7 +11,9 @@ const resolvers = {
     
     Mutation: {
         addUser: async (parent, args) => {
-            const user = await User.create(args);
+            const data = await scrapeWatchlist(args);
+
+            const user = await User.create(data);
             return user;
         }
     },
@@ -20,5 +22,9 @@ const resolvers = {
 
 module.exports = resolvers;
 
+
+// TODO: call webscrape in here. In InputBox in front end we'll call addUser mutation, 
+// which will trigger this and do the webscrape on the back end. 
+// 
 
 // when adding username it will start the get right away because it takes a long time

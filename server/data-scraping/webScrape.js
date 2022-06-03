@@ -2,17 +2,18 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 
-const testURL = "https://letterboxd.com/noahneville/watchlist/";
+//const testURL = "https://letterboxd.com/noahneville/watchlist/";
 
-async function cheerioWatchlist(username) {
+async function scrapeWatchlist(username) {
+  console.log(username);
   const watchlistURL = 'https://letterboxd.com/' + username+ '/watchlist/';
   const { data } = await axios.get(watchlistURL);
-  //console.log(data);
+  
   const $ = cheerio.load(data);
   const filmList = $(".film-poster");
   // Stores data for all films in watchlist
   const watchlist = [];
-  const fullWatchlist = [];
+  
   // Use .each method to loop through the li we selected
   filmList.each((idx, el) => {
     // Object holding data for each movie
@@ -20,25 +21,22 @@ async function cheerioWatchlist(username) {
     const movieURL = "https://letterboxd.com" + movie;
     watchlist.push(movieURL);
   });
-  // Logs countries array to the console
-  console.log(watchlist);
-  // for(let i = 0; i < watchlist.length; i++) {
-  //   const fullURL= "https://letterboxd.com" + watchlist[i];
-  //   fullWatchlist.push(fullURL);
-  //   i++;
-  // };
+   
+  //console.log(watchlist);
+ 
   console.log('Watchlist Scrape Complete.');
   console.log(`Starting individual data scrape on all ${watchlist.length} films in your watchlist.`)
   scrapeMoviePage(username, watchlist);
 }
 
-cheerioWatchlist('noahneville');
+//cheerioWatchlist('noahneville');
 
 async function scrapeMoviePage(username, array) {
   //const singleMovieURL = "https://letterboxd.com/film/blade-runner/";
 
   const movieSchema = [];
   const total = array.length;
+
   for (let i = 0; i < array.length; i++) {
     const { data } = await axios.get(array[i]);
     const $ = cheerio.load(data);
@@ -109,18 +107,16 @@ async function scrapeMoviePage(username, array) {
 
   console.log(userModel);
   
-  // Write countries array in countries.json file
-  // fs.writeFile("films.json", JSON.stringify(films, null, 2), (err) => {
-  //   if (err) {
-  //     console.error(err);
-  //     return;
-  // }
-  //console.log("Successfully written data to file");
+  return userModel;
 }
 
-// Invoke the above function
+module.exports = scrapeWatchlist;
 
-// TODO: add function to get page length
+
+
+// Code Graveyard: 
+
+// function to get page length
 // const browser = await puppeteer.launch({headless: false});
 //   const page = await browser.newPage();
 //   await page.goto(url);
@@ -138,62 +134,62 @@ async function scrapeMoviePage(username, array) {
 //  // Object holding data for each movie
 //   const movie = $(el , 'data-film-name').attr('data-film-slug');
 
-async function scrapeWatchlist(url) {
-  const browser = await puppeteer.launch({
-    headless: false,
-    defaultViewport: false,
-  });
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: "networkidle2" });
-  //console.log(page)
+// async function scrapeWatchlist(url) {
+//   const browser = await puppeteer.launch({
+//     headless: false,
+//     defaultViewport: false,
+//   });
+//   const page = await browser.newPage();
+//   await page.goto(url, { waitUntil: "networkidle2" });
+//   //console.log(page)
 
-  //const watchlistLinks = await page.$(".film-poster");
+//   //const watchlistLinks = await page.$(".film-poster");
 
-  // const watchlistLinks = await page.$$eval('.film-poster > .react-component .poster', (watchlistLinks) =>
-  //   watchlistLinks.map((watchlistLink) => watchlistLink.getAttribute('data-film-link')));
+//   // const watchlistLinks = await page.$$eval('.film-poster > .react-component .poster', (watchlistLinks) =>
+//   //   watchlistLinks.map((watchlistLink) => watchlistLink.getAttribute('data-film-link')));
 
-  //*[@id="content"]/div/div[1]/section/ul/li[1]/div/div/a
+//   //*[@id="content"]/div/div[1]/section/ul/li[1]/div/div/a
 
-  // const watchlistLinks = await Promise.all((await page.$$('.has-menu')).map(async a => {
-  //   return await (await a.getProperty('href')).jsonValue();
-  // }));
+//   // const watchlistLinks = await Promise.all((await page.$$('.has-menu')).map(async a => {
+//   //   return await (await a.getProperty('href')).jsonValue();
+//   // }));
 
-  // const watchlistLinks = await Promise.all((await page.$$('.has-menu')).map(async a => {
-  //   return await (await a.getProperty('href')).jsonValue();
-  // }));
+//   // const watchlistLinks = await Promise.all((await page.$$('.has-menu')).map(async a => {
+//   //   return await (await a.getProperty('href')).jsonValue();
+//   // }));
 
-  // let watchlistLinks = await page.$$eval('a.has-menu', (titleLinkEls) => {
-  //   return titleLinkEls.map((titleLinkEl) => {
-  //       let link = titleLinkEl.getAttribute('href')
-  //       return link;
-  //   });
-  // });
+//   // let watchlistLinks = await page.$$eval('a.has-menu', (titleLinkEls) => {
+//   //   return titleLinkEls.map((titleLinkEl) => {
+//   //       let link = titleLinkEl.getAttribute('href')
+//   //       return link;
+//   //   });
+//   // });
 
-  const watchlistLinks = await page.evaluate(() => {
-    let el = document.querySelector(".has-menu");
-    console.log(el);
-    let linkEl = el.getAttribute("href");
+//   const watchlistLinks = await page.evaluate(() => {
+//     let el = document.querySelector(".has-menu");
+//     console.log(el);
+//     let linkEl = el.getAttribute("href");
 
-    return linkEl;
-  });
+//     return linkEl;
+//   });
 
-  console.log(watchlistLinks);
+//   console.log(watchlistLinks);
 
-  // const getWatchList = await page.evaluate(() => {
-  //   const entry = page.$$('.data-film-link');
-  //   console.log(entry);
-  //   return entry.value;
-  // })
+//   // const getWatchList = await page.evaluate(() => {
+//   //   const entry = page.$$('.data-film-link');
+//   //   console.log(entry);
+//   //   return entry.value;
+//   // })
 
-  // console.log(getWatchList);
-  await browser.close();
-}
+//   // console.log(getWatchList);
+//   await browser.close();
+// }
 
 //scrapeWatchlist(testURL);
 
 //*[@id="content"]/div/div[1]/section/ul/li[96]/div
 
-// TODO: autoscroll code i found here: https://stackoverflow.com/questions/51529332/puppeteer-scroll-down-until-you-cant-anymore
+// autoscroll code i found here: https://stackoverflow.com/questions/51529332/puppeteer-scroll-down-until-you-cant-anymore
 // (async () => {
 //   const browser = await puppeteer.launch({
 //       headless: false
@@ -215,21 +211,21 @@ async function scrapeWatchlist(url) {
 //   await browser.close();
 // })();
 
-async function autoScroll(page) {
-  await page.evaluate(async () => {
-    await new Promise((resolve, reject) => {
-      var totalHeight = 0;
-      var distance = 100;
-      var timer = setInterval(() => {
-        var scrollHeight = document.body.scrollHeight;
-        window.scrollBy(0, distance);
-        totalHeight += distance;
+// async function autoScroll(page) {
+//   await page.evaluate(async () => {
+//     await new Promise((resolve, reject) => {
+//       var totalHeight = 0;
+//       var distance = 100;
+//       var timer = setInterval(() => {
+//         var scrollHeight = document.body.scrollHeight;
+//         window.scrollBy(0, distance);
+//         totalHeight += distance;
 
-        if (totalHeight >= scrollHeight - window.innerHeight) {
-          clearInterval(timer);
-          resolve();
-        }
-      }, 100);
-    });
-  });
-}
+//         if (totalHeight >= scrollHeight - window.innerHeight) {
+//           clearInterval(timer);
+//           resolve();
+//         }
+//       }, 100);
+//     });
+//   });
+// }

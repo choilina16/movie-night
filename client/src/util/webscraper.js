@@ -1,12 +1,13 @@
 //const puppeteer = require("puppeteer");
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from './mutations';
+// import { useMutation } from '@apollo/client';
+// import { ADD_USER } from './mutations';
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 //const testURL = "https://letterboxd.com/noahneville/watchlist/";
 
-async function cheerioWatchlist(username) {
+async function scrapeWatchlist(username) {
+  console.log(username);
   const watchlistURL = "https://letterboxd.com/" + username + "/watchlist/";
   const { data } = await axios.get(watchlistURL);
 
@@ -22,8 +23,8 @@ async function cheerioWatchlist(username) {
     const movieURL = "https://letterboxd.com" + movie;
     watchlist.push(movieURL);
   });
-  // Logs countries array to the console
-  console.log(watchlist);
+  
+  //console.log(watchlist);
 
   console.log("Watchlist Scrape Complete.");
   console.log(`Starting individual data scrape on all ${watchlist.length} films in your watchlist.`);
@@ -32,7 +33,7 @@ async function cheerioWatchlist(username) {
   // TODO: export
 }
 
-cheerioWatchlist("noahneville");
+//scrapeWatchlist("noahneville");
 
 async function scrapeMoviePage(username, array) {
   //const singleMovieURL = "https://letterboxd.com/film/blade-runner/";
@@ -69,7 +70,7 @@ async function scrapeMoviePage(username, array) {
     movieEntry.tmdb_id = $("body").attr("data-tmdb-id");
     movieEntry.year = $('small[class="number"]').children("a").text();
 
-    // const castList = $('#tab-cast').children(".cast-list").children('p').children('a');
+    
     const castList = $(".cast-list").children("p").children("a");
     castList.each((idx, el) => {
       const castMember = $(el).text();
@@ -107,17 +108,9 @@ async function scrapeMoviePage(username, array) {
     savedMovies: movieSchema,
   };
 
-  // console.log(userModel);
+  console.log(userModel);
 
-  useMutation(ADD_USER);
-
-  // Write countries array in countries.json file
-  // fs.writeFile("films.json", JSON.stringify(films, null, 2), (err) => {
-  //   if (err) {
-  //     console.error(err);
-  //     return;
-  // }
-  //console.log("Successfully written data to file");
+  return userModel;
 }
 
-module.exports = cheerioWatchlist;
+export default scrapeWatchlist;
