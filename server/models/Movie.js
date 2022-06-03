@@ -1,11 +1,10 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const strSchema = new Schema({
-  movies: [
-    {
-      type: String,
-    },
-  ],
+const movieSchema = new Schema({
+  poster_url: {
+    type: String,
+    required: true,
+  },
   movie_url: {
     type: String,
     required: true,
@@ -14,11 +13,11 @@ const strSchema = new Schema({
     type: String,
     required: true,
   },
-  watchlist: {
-    type: Boolean,
-    required: true,
-  },
-  film_id: {
+  // watchlist: {
+  //   type: Boolean,
+  //   required: true,
+  // },
+  tmdb_id: {
     type: String,
     required: true,
   },
@@ -27,20 +26,26 @@ const strSchema = new Schema({
     required: true,
   },
   // array of strings
-  cast: {
-    type: String,
-    required: true,
-  },
+  cast: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   // array of strings
-  genres: {
-    type: String,
-    required: true,
-  },
+  genres: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   // array of strings
-  language: {
-    type: String,
-    required: true,
-  },
+  language: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
   rating: {
     type: String,
     required: true,
@@ -61,4 +66,4 @@ const strSchema = new Schema({
 
 // array of string streaming services
 
-module.exports = Movie(strSchema);
+module.exports = movieSchema;

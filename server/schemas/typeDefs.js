@@ -6,23 +6,26 @@ const typeDefs = gql`
     movies: [Movie]
   }
   type Movie {
+    poster_url: String!
+    movie_url: String!
+    title: String!
     tmdb_id: ID!
-    poster_url: String
-    movie_url: String
-    title: String
-    year: String
-    cast: String
-    genre: String
-    language: String
-    rating: String
-    synopsis: String
-    director: String
+    year: String!
+    cast: [String]
+    genre: [String]
+    language: [String]
+    rating: String!
+    synopsis: String!
+    director: String!
+    runtime: String!
   }
 
   type Query {
-    user: [User]
-    movies: Movie
+    user: User
   }
 
+  type Mutation {
+    addUser: User
+  }
 `;
 module.exports = typeDefs;
