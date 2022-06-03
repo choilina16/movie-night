@@ -3,7 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type User {
     username: String!
-    movies: [Movie]
+    savedMovies: [Movie]
   }
   type Movie {
     poster_url: String!
