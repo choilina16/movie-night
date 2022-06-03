@@ -2,17 +2,18 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
 
-const testURL = "https://letterboxd.com/noahneville/watchlist/";
+//const testURL = "https://letterboxd.com/noahneville/watchlist/";
 
-async function cheerioWatchlist(username) {
+async function scrapeWatchlist(username) {
+  console.log(username);
   const watchlistURL = 'https://letterboxd.com/' + username+ '/watchlist/';
   const { data } = await axios.get(watchlistURL);
-  //console.log(data);
+  
   const $ = cheerio.load(data);
   const filmList = $(".film-poster");
   // Stores data for all films in watchlist
   const watchlist = [];
-  const fullWatchlist = [];
+  
   // Use .each method to loop through the li we selected
   filmList.each((idx, el) => {
     // Object holding data for each movie
@@ -20,19 +21,15 @@ async function cheerioWatchlist(username) {
     const movieURL = "https://letterboxd.com" + movie;
     watchlist.push(movieURL);
   });
-  // Logs countries array to the console
-  console.log(watchlist);
-  // for(let i = 0; i < watchlist.length; i++) {
-  //   const fullURL= "https://letterboxd.com" + watchlist[i];
-  //   fullWatchlist.push(fullURL);
-  //   i++;
-  // };
+   
+  //console.log(watchlist);
+ 
   console.log('Watchlist Scrape Complete.');
   console.log(`Starting individual data scrape on all ${watchlist.length} films in your watchlist.`)
   scrapeMoviePage(username, watchlist);
 }
 
-cheerioWatchlist('noahneville');
+//cheerioWatchlist('noahneville');
 
 async function scrapeMoviePage(username, array) {
   //const singleMovieURL = "https://letterboxd.com/film/blade-runner/";

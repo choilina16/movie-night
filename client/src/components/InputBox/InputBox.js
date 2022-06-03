@@ -1,12 +1,20 @@
 // using a new npm package- MUI (react component library)
 import * as React from 'react';
 import { useState } from 'react';
+// importing mutations to writer Users to dbTODO: 
+
+//import { useMutation } from '@apollo/client';
+//import { ADD_USER } from '../../util/mutations';
+
 // importing in for MUI
 import { makeStyles } from '@mui/styles';
 import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import './inputBox.css';
+
+// TODO:
+import scrapeWatchlist from '../../util/webScraper'
 
 // lists that the user will choose from
 const movieGenre = [
@@ -104,8 +112,11 @@ function InputBox() {
   const [inputData, setInputData] = useState('');
   const [movie, setMovieGenre] = useState('');
   const [language, setMovieLanguage] = useState('');
-  console.log(language);
-  console.log(movie);
+
+  // TODO: adding mutation
+  //const [addUser, { error }] = useMutation(ADD_USER);
+  //console.log(language);
+  //console.log(movie);
 
   // const handleFormSubmit = (event) => {
   //   // Preventing the default behavior of the form submit (which is to refresh the page)
@@ -117,10 +128,27 @@ function InputBox() {
   // };
 
   const handleAddUsername = () => {
-    const newUsernames = [...usernames, { value: inputData }];
+    const currentUsername = inputData;
+    console.log(currentUsername);
+    const newUsernames = [...usernames, currentUsername];
     setUsernames(newUsernames);
     setInputData('');
-    console.log(usernames);
+    scrapeWatchlist(currentUsername);
+
+
+    //TODO: trying to add users to db
+    // try {
+    //   const { data } = await addUser({
+    //     variables: { inputData },
+    //   });
+    //   console.log(data);
+    //   Auth.login(data.addUser.token);
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    
+
+    console.log(newUsernames);
   };
 
   const handleInputChange = (e) => {
@@ -135,7 +163,7 @@ function InputBox() {
         {/* where the usernames will popular */}
         <div className="list">
           {usernames.map((item) => {
-            return <p>{item.value}</p>;
+            return <p key="{item.value}">{item.value}</p>;
           })}
           PLACEHOLDER
         </div>

@@ -23,3 +23,5 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+// mutation that sends username to back
