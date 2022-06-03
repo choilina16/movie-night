@@ -134,20 +134,20 @@ function InputBox() {
     setUsernames(newUsernames);
     setInputData('');
     // scrapeWatchlist(currentUsername);
-
+    console.log(newUsernames);
 
     //TODO: trying to add users to db
-    // try {
-    //   const { data } = addUser({
-    //     variables: { inputData },
-    //   });
-    //   console.log(data);
-    // } catch (err) {
-    //   console.error(err);
-    // }
+    try {
+      const { data } = addUser({
+        variables: 'noahneville',
+      });
+      console.log(data);
+    } catch (err) {
+      console.error(err);
+    }
     
 
-    console.log(newUsernames);
+   
   };
 
   const handleInputChange = (e) => {

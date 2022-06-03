@@ -11,9 +11,10 @@ const resolvers = {
     
     Mutation: {
         addUser: async (parent, args) => {
-            const data = await scrapeWatchlist(args);
-
-            const user = await User.create(data);
+          const data = await scrapeWatchlist(args);
+          console.log("what is this", args);
+          console.log(data);
+            const user = await User.create(args);
             return user;
         }
     },
