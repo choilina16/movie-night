@@ -7,9 +7,16 @@ import { ADD_USER } from '../../util/mutations';
 
 // importing in for MUI
 import { makeStyles } from '@mui/styles';
-import { TextField, Autocomplete, Stack, Button } from '@mui/material';
+import {
+  TextField,
+  Autocomplete,
+  Stack,
+  Button,
+  AlertTitle,
+} from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
+import FlipCard from '../../pages/PostSubmit/FlipCard';
 import './inputBox.css';
 
 // lists that the user will choose from
@@ -106,11 +113,12 @@ function InputBox() {
   // LOGIC FOR THE INPUT BOX
 
   const [usernames, setUsernames] = useState([]);
+  const [result, setResult] = useState({});
   const [inputData, setInputData] = useState('');
   const [addUser] = useMutation(ADD_USER);
 
-  const handleAddUsername = async (event) => {
-    event.preventDefault();
+  const handleAddUsername = async (e) => {
+    e.preventDefault();
 
     const currentUsername = inputData;
     console.log(currentUsername);
@@ -133,6 +141,22 @@ function InputBox() {
       // window.location.reload();
       console.log(usernames);
       console.log(data);
+
+      const something = data.addUser.savedMovies;
+      console.log(something);
+
+      const movieData = something.map((data) => ({
+        image: data.poster_url,
+        title: data.title,
+        year: data.year,
+        cast: data.cast,
+        genre: data.genre,
+        language: data.language,
+        director: data.director,
+        runtime: data.runtime,
+      }));
+
+      setResult(movieData);
     } catch (err) {
       console.log('nah');
       console.error(err);
@@ -140,12 +164,21 @@ function InputBox() {
   };
 
   console.log(usernames);
+  // movies save into this state
+  console.log(result);
 
   const handleInputChange = (e) => {
     setInputData(e.target.value);
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
+
   const classes = useStyles();
+
+  // const { savedMovies = '' } = result;
+  // console.log(result);
 
   return (
     <div>
@@ -225,6 +258,22 @@ function InputBox() {
           </Button>
         </ThemeProvider>
       </Stack>
+      {/* <PostSubmit movies={result} /> */}
+      <div className="container">
+        {/* Card Row */}
+        <div className="row card-row">
+          <div className="header-container">
+            {/* note: Could make it so each 3 usernames populate in place of 'you' (ex. Here's some movies a, b, and c have in common) */}
+            <p className="header-text">
+              Here's some movies you have in common...
+            </p>
+          </div>
+          {/* ...mapping over each object in the `Cards` array of objects */}
+          {result.map((card) => (
+            <FlipCard card={card} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
