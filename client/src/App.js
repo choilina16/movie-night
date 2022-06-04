@@ -1,19 +1,19 @@
 import React from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider,  } from "@apollo/client";
-//createHttpLink
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
+//
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import AppCarousel from "./components/Carousel/Carousel";
 import PostSubmit from "./pages/PostSubmit/PostSubmit";
-import MovieDetails from "./pages/MovieDetails/MovieDetails";
+//import MovieDetails from "./pages/MovieDetails/MovieDetails";
 import Credit from "./pages/TmdbCredit/Credit";
 
-// const httpLink = createHttpLink({
-//   uri: '/graphql',
-// });
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
 
 const client = new ApolloClient({
-  uri: "/graphql",
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
