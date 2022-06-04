@@ -1,12 +1,17 @@
-import React from "react";
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
+import React from 'react';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 //
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import AppCarousel from "./components/Carousel/Carousel";
-import PostSubmit from "./pages/PostSubmit/PostSubmit";
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import AppCarousel from './components/Carousel/Carousel';
+import PostSubmit from './pages/PostSubmit/PostSubmit';
 //import MovieDetails from "./pages/MovieDetails/MovieDetails";
-import Credit from "./components/TMDBCredit/Credit"
+import Credit from './components/TMDBCredit/Credit';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
