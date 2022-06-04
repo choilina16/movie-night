@@ -1,8 +1,6 @@
 import * as React from "react";
 import "./carousel.css";
 import { Carousel } from "react-bootstrap";
-import movie1 from "../../assets/cultural-revolution.png";
-import movie2 from "../../assets/cultural-revolution-1.png";
 import InputBox from "../InputBox/InputBox";
 import Grid from "@mui/material/Grid";
 
