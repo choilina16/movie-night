@@ -18,9 +18,24 @@ function FlipCard({ card }) {
                </div>
 
                {/* Back Card */}
-               <div className="card back">
-                   <div className="card-body d-flex justify-content-center align-items-center">
-                       <p className="card-text fs-1 fw-bold">{card.text}</p>
+               <div className="card back d-flex">
+                   <div className="card-body">
+                       {/* Title */}
+                       <p className="card-text fs-1 fw-bold">Title: {card.title}</p>
+                       {/* Release */}
+                       <p className="card-text fs-1 fw-bold">Release: {card.year}</p>
+                       {/* Cast */}
+                       <p className="card-text fs-1 fw-bold">Cast: {card.cast}</p>
+                       {/* Genre */}
+                       <p className="card-text fs-1 fw-bold">Genre: {card.genre}</p>
+                       {/* Language(s) */}
+                       <p className="card-text fs-1 fw-bold">Language(s): {card.language}</p>
+                       {/* Director */}
+                       <p className="card-text fs-1 fw-bold">Director: {card.director}</p>
+                       {/* Runtime */}
+                       <p className="card-text fs-1 fw-bold">Runtime: {card.runtime}</p>
+                       {/* Modal appear ON-CLICK */}
+                       <a href="#" className="card-text fs-1 align-self-end">Click for more info</a>
                    </div>
                </div>
 
