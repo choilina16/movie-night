@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user {
-    user {
+  query user($username: String!) {
+    user(username: $username) {
       username
       savedMovies {
         poster_url
