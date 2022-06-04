@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_USER = gql`
-  query user {
-    user {
+  query user($username: String!) {
+    user(username: $username) {
       username
       savedMovies {
         poster_url
@@ -17,6 +17,17 @@ export const QUERY_USER = gql`
         synopsis
         director
         runtime
+      }
+    }
+  }
+`;
+
+export const QUERY_USER_TITLES = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      username
+      savedMovies {
+        title
       }
     }
   }
