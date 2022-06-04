@@ -35,17 +35,14 @@ function AppCarousel() {
     // https://api.themoviedb.org/3/movie/popular?api_key=10c8394b98fc5c8ccc47c5ae2b948bc9&language=en-US&page=1
 
     <div className="carousel-input-container">
+    
       {/* CAROUSEL */}
-
       <Grid container spacing={3}>
+      <div className="carousel-txt-container">
+            <p className="carousel-text">Welcome to<span className="full-name">MOVIE<span className="night">NIGHT</span></span></p>
+          </div>
         <Grid item xs={12} lg={6}>
           <div className="carousel-container">
-            <div className="welcome">
-              <h4>
-                WELCOME TO MOVIE<span className="night">NIGHT</span>
-              </h4>
-            </div>
-
             <Carousel>
               {movieList.map(function (movie) {
                 return (

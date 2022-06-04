@@ -4,7 +4,7 @@ import tmdbLogo from "../../assets/tmdb.svg"
 
 function Credit() {
   return (
-    <section>
+    <section className="credit-container">
         <div className="logo-container">
             <img src={tmdbLogo} alt="hehehe" className="tmdb-logo"></img>
         </div>
