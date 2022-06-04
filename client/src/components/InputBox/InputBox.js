@@ -139,10 +139,13 @@ function InputBox() {
     //TODO: trying to add users to db
     //event.preventDefault();
     console.log(currentUsername);
+    
     try {
       const { data } =  await addUser({
         variables: {username: currentUsername},
+        
       });
+      window.location.reload();
       console.log(data);
     } catch (err) {
       console.log('nah');

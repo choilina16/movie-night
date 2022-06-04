@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 export const ADD_USER = gql`
   mutation addUser($username: String!) {
     addUser(username: $username) {
-      user {
+
         username
         savedMovies {
           poster_url
@@ -19,7 +19,7 @@ export const ADD_USER = gql`
           director
           runtime
         }
-      }
+
     }
   }
 `;
