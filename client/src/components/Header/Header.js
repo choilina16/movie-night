@@ -9,7 +9,7 @@ function Header() {
       <h1>
         <img src={logo} class="logo" alt="logo"></img>
         <span className="full-name">
-          MOVIE<span className="single-word">NIGHT</span>
+          movie<span className="single-word">NIGHT</span>
         </span>
       </h1>
     </header>

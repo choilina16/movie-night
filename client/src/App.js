@@ -25,7 +25,7 @@ function App() {
         <AppCarousel />
         <Footer />
         {/* PostSubmit STAYS HERE FOR STYLING PURPOSES RN */}
-        <PostSubmit />
+        {/* <PostSubmit /> */}
         {/* MovieDetails STAYS HERE FOR STYLING PURPOSES RN */}
         {/* <MovieDetails /> */}
         <Credit />
