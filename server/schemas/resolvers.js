@@ -16,6 +16,7 @@ const resolvers = {
           console.log("what is this", args);
           console.log(data);
           const userModel = await scrapeMoviePage(username, data)
+          console.log(userModel);
           const user = await User.create(userModel);
           return user;
         }
