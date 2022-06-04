@@ -2,8 +2,15 @@ import React from 'react';
 import './flipcard.scss';
 import cn from 'classnames';
 
-// import { useQuery } from '@apollo/client';
-// import { QUERY_USER } from '../../util/queries';
+// `{ card }` param registers data from objects in the `Card` array of objects into this base model for however many objects exist 
+function FlipCard({ card }) {
+    
+    return (
+       // Outer Card & Inner Card
+       <div className="flip-card-outer">
+           <div className={cn("flip-card-inner", {
+          "hover-trigger": card.variant === "hover"
+            })}>
 
 // `{ card }` param registers data from objects in the `Card` array of objects into this base model for however many objects exist
 function FlipCard({ card }) {
