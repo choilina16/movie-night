@@ -1,7 +1,6 @@
 // using a new npm package- MUI (react component library)
 import * as React from 'react';
 import { useState } from 'react';
-// importing mutations to writer Users to dbTODO: 
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../util/mutations';
@@ -12,9 +11,6 @@ import { TextField, Autocomplete, Stack, Button } from '@mui/material';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import './inputBox.css';
-
-// // TODO:
-// import scrapeWatchlist from '../../util/webScraper'
 
 // lists that the user will choose from
 const movieGenre = [
@@ -108,53 +104,42 @@ const CssTextField = styled(TextField)({
 
 function InputBox() {
   // LOGIC FOR THE INPUT BOX
+
   const [usernames, setUsernames] = useState([]);
   const [inputData, setInputData] = useState('');
-  const [movie, setMovieGenre] = useState('');
-  const [language, setMovieLanguage] = useState('');
-
-  // TODO: adding mutation
   const [addUser] = useMutation(ADD_USER);
-  //console.log(language);
-  //console.log(movie);
-
-  // const handleFormSubmit = (event) => {
-  //   // Preventing the default behavior of the form submit (which is to refresh the page)
-  //   event.preventDefault();
-
-  //   setUsername('');
-  //   setMovieGenre('');
-  //   setMovieLanguage('');
-  // };
 
   const handleAddUsername = async (event) => {
+    event.preventDefault();
+
     const currentUsername = inputData;
     console.log(currentUsername);
-    const newUsernames = [...usernames, {value: inputData}];
-    await setUsernames(newUsernames);
+    // const newUsernames = [...usernames, { value: inputData }];
+    const newUsernames = [...usernames, currentUsername];
+    console.log(newUsernames);
+    setUsernames(newUsernames);
     setInputData('');
-    // scrapeWatchlist(currentUsername);
-    console.log(usernames);
+    // await setUsernames(newUsernames);
+    // setInputData('');
 
-    //TODO: trying to add users to db
+    console.log(usernames);
     //event.preventDefault();
-    console.log(currentUsername);
-    
+    // console.log(currentUsername);
+
     try {
-      const { data } =  await addUser({
-        variables: {username: currentUsername},
-        
+      const { data } = await addUser({
+        variables: { username: currentUsername },
       });
-      window.location.reload();
+      // window.location.reload();
+      console.log(usernames);
       console.log(data);
     } catch (err) {
       console.log('nah');
       console.error(err);
     }
-    
-
-   
   };
+
+  console.log(usernames);
 
   const handleInputChange = (e) => {
     setInputData(e.target.value);
@@ -205,9 +190,9 @@ function InputBox() {
         <ThemeProvider theme={theme}>
           <Autocomplete
             disablePortal
-            onInputChange={(event, newMovie) => {
-              setMovieLanguage(newMovie);
-            }}
+            // onInputChange={(event, newMovie) => {
+            //   setMovieLanguage(newMovie);
+            // }}
             id="combo-box-demo"
             options={movieGenre}
             sx={{ width: 400, p: 1 }}
@@ -219,9 +204,9 @@ function InputBox() {
           <Autocomplete
             disablePortal
             // inputValue={language}
-            onInputChange={(event, newLanguage) => {
-              setMovieGenre(newLanguage);
-            }}
+            // onInputChange={(event, newLanguage) => {
+            //   setMovieGenre(newLanguage);
+            // }}
             id="combo-box-demo"
             options={movieLanguage}
             sx={{ width: 400, p: 1 }}
