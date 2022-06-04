@@ -4,8 +4,8 @@ const {scrapeWatchlist, scrapeMoviePage } = require('../data-scraping/webScrape'
 
 const resolvers = {
     Query: {
-        user: async () => {
-          return await User.findOne({username: username});
+        user: async (parent, {username}) => {
+          return  User.findOne({username});
         },
       },
     
