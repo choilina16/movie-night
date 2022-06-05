@@ -2,9 +2,6 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 // const puppeteer = require("puppeteer");
 
-//const testURL = "https://letterboxd.com/noahneville/watchlist/";
-// WelcomeToChilis: anthony's username
-
 async function scrapeWatchlist(username) {
   console.log(username);
   try {
@@ -37,14 +34,13 @@ async function scrapeWatchlist(username) {
       `Starting individual data scrape on all ${watchlist.length} films in your watchlist.`
     );
     //await axios.get(watchlistURL).then(res => {console.log("is this undefined", res)}).catch(err);
-    scrapeMoviePage(username, watchlist);
+    //scrapeMoviePage(username, watchlist);
     return watchlist;
   } catch (err) {
     console.log(err);
   }
 }
 
-scrapeWatchlist('jimbolikesmovie');
 
 async function scrapeMoviePage(username, array) {
   //const singleMovieURL = "https://letterboxd.com/film/blade-runner/";
