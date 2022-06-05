@@ -4,9 +4,6 @@ import cn from 'classnames';
 
 // `{ card }` param registers data from objects in the `Card` array of objects into this base model for however many objects exist
 function FlipCard({ card }) {
-  // const { loading, data } = useQuery(QUERY_USER);
-  // const userData = data?.user || {};
-
   return (
     // Outer Card & Inner Card
     <div className="flip-card-outer">
@@ -18,7 +15,7 @@ function FlipCard({ card }) {
         {/* Front Card */}
         <div className="card front">
           <img
-            src={card.image}
+            src={card.poster_url}
             className="image"
             alt="flippable cards so good"
           ></img>

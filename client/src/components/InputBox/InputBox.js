@@ -1,9 +1,10 @@
 // using a new npm package- MUI (react component library)
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { useMutation } from '@apollo/client';
+import { useMutation, useLazyQuery } from '@apollo/client';
 import { ADD_USER } from '../../util/mutations';
+import { QUERY_USER } from '../../util/queries';
 
 // importing in for MUI
 import { makeStyles } from '@mui/styles';
@@ -17,7 +18,8 @@ import {
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 import FlipCard from '../../pages/PostSubmit/FlipCard';
-import './inputBox.css';
+// import './inputBox.css';
+import './postsubmit.scss';
 
 // lists that the user will choose from
 const movieGenre = [
@@ -115,7 +117,10 @@ function InputBox() {
   const [usernames, setUsernames] = useState([]);
   const [result, setResult] = useState({});
   const [inputData, setInputData] = useState('');
+
   const [addUser] = useMutation(ADD_USER);
+
+  const [getUser, { data }] = useLazyQuery(QUERY_USER);
 
   const handleAddUsername = async (e) => {
     e.preventDefault();
@@ -127,19 +132,12 @@ function InputBox() {
     console.log(newUsernames);
     setUsernames(newUsernames);
     setInputData('');
-    // await setUsernames(newUsernames);
-    // setInputData('');
-
-    console.log(usernames);
-    //event.preventDefault();
-    // console.log(currentUsername);
 
     try {
       const { data } = await addUser({
         variables: { username: currentUsername },
       });
-      // window.location.reload();
-      console.log(usernames);
+
       console.log(data);
 
       const something = data.addUser.savedMovies;
@@ -163,22 +161,28 @@ function InputBox() {
     }
   };
 
-  console.log(usernames);
-  // movies save into this state
-  console.log(result);
-
   const handleInputChange = (e) => {
     setInputData(e.target.value);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
+  const handleSubmit = async () => {
+    try {
+      const { data } = await getUser({
+        variables: { username: 'choilina16' },
+      });
+
+      console.log(data);
+    } catch (err) {
+      console.log('query nah');
+      console.error(err);
+    }
+  };
 
   const classes = useStyles();
 
-  // const { savedMovies = '' } = result;
-  // console.log(result);
+  if (data && data.user) {
+    console.log(data.user);
+  }
 
   return (
     <div>
@@ -253,12 +257,13 @@ function InputBox() {
             sx={{ width: 100 }}
             variant="contained"
             style={{ margin: '0 auto', display: 'flex' }}
+            onClick={handleSubmit}
           >
             SUBMIT
           </Button>
         </ThemeProvider>
       </Stack>
-      {/* <PostSubmit movies={result} /> */}
+
       <div className="container">
         {/* Card Row */}
         <div className="row card-row">
@@ -268,7 +273,10 @@ function InputBox() {
               Here's some movies you have in common...
             </p>
           </div>
+
           {/* ...mapping over each object in the `Cards` array of objects */}
+          {data &&
+            data.user.savedMovies.map((card) => <FlipCard card={card} />)}
         </div>
       </div>
     </div>
