@@ -269,9 +269,6 @@ function InputBox() {
             </p>
           </div>
           {/* ...mapping over each object in the `Cards` array of objects */}
-          {result.map((card) => (
-            <FlipCard card={card} />
-          ))}
         </div>
       </div>
     </div>
