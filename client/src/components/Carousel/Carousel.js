@@ -3,13 +3,18 @@ import "./carousel.css";
 import { Carousel } from "react-bootstrap";
 import InputBox from "../InputBox/InputBox";
 import Grid from "@mui/material/Grid";
+import { requirePropFactory } from "@mui/material";
+require('dotenv').config();
+const api_key = process.env.REACT_APP_API_KEY
+
+console.log(process.env.REACT_APP_API_KEY)
 
 function AppCarousel() {
   const [movieList, setMovieList] = React.useState([]);
 
   const getMovies = async () => {
     fetch(
-      "https://api.themoviedb.org/3/movie/popular?api_key=10c8394b98fc5c8ccc47c5ae2b948bc9&language=en-US&page=1"
+      `https://api.themoviedb.org/3/movie/popular?api_key=10c8394b98fc5c8ccc47c5ae2b948bc9&language=en-US&page=1`
     )
       .then((response) => response.json())
       .then((data) => {
