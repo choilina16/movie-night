@@ -5,10 +5,18 @@ const {scrapeWatchlist, scrapeMoviePage } = require('../data-scraping/webScrape'
 const resolvers = {
     Query: {
         user: async (parent, {username}) => {
-          const result =  await User.find({username});
-          console.log(result);
-            
-            return result;
+          const result =  await User.find({...username});
+          //console.log(result);
+          const unfilteredWatchlist = result.map(e => e.savedMovies);
+          
+          unfilteredWatchlist.flat();
+          console.log(unfilteredWatchlist);
+          // const array = [];
+          // for(let i = 0; i < unfilteredWatchlist.length; i++) {
+          //   array.push(unfilteredWatchlist[i]);
+          // }
+          //console.log(array)
+            return 'test';
         },
       },
     
