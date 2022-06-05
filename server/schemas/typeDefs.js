@@ -20,12 +20,18 @@ const typeDefs = gql`
     runtime: String!
   }
 
+  input UsernameInputFilter {
+    name: String!
+  }
+
   type Query {
     user(username: String!): User
+    getTitles(input: UsernameInputFilter): [User]
   }
 
   type Mutation {
     addUser(username: String!): User
+    
   }
 `;
 module.exports = typeDefs;
