@@ -21,11 +21,11 @@ const typeDefs = gql`
   }
 
   input UsernameInputFilter {
-    name: String!
+    username: String!
   }
 
   type Query {
-    user(username: String!): User
+    user(username: [String!]): [User]!
     getTitles(input: UsernameInputFilter): [User]
   }
 

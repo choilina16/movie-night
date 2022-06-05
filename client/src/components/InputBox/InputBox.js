@@ -168,7 +168,8 @@ function InputBox() {
   const handleSubmit = async () => {
     try {
       const { data } = await getUser({
-        variables: { username: 'choilina16' },
+        // TODO: Figure out the way to input the username array
+        variables:  {"username": ['choilina16', 'welcometochilis']} ,
       });
 
       console.log(data);
@@ -275,8 +276,8 @@ function InputBox() {
           </div>
 
           {/* ...mapping over each object in the `Cards` array of objects */}
-          {data &&
-            data.user.savedMovies.map((card) => <FlipCard card={card} />)}
+          {/* {data &&
+            data.user.savedMovies.map((card) => <FlipCard card={card} />)} */}
         </div>
       </div>
     </div>

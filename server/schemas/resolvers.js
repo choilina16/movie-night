@@ -5,7 +5,10 @@ const {scrapeWatchlist, scrapeMoviePage } = require('../data-scraping/webScrape'
 const resolvers = {
     Query: {
         user: async (parent, {username}) => {
-          return  User.findOne({username});
+          const result =  await User.find({username});
+          console.log(result);
+            
+            return result;
         },
       },
     
