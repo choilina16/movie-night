@@ -25,24 +25,20 @@ function FlipCard({ card }) {
         <div className="card back d-flex">
           <div className="card-body">
             {/* Title */}
-            <p className="card-text fs-1 fw-bold">Title: {card.title}</p>
+            <p className="card-text fs-1 fw-bold"><span className='movie-thingy'>Title:</span> {card.title}</p>
             {/* Release */}
-            <p className="card-text fs-1 fw-bold">Release: {card.year}</p>
+            <p className="card-text fs-1 fw-bold"><span className='movie-thingy'>Release:</span> {card.year}</p>
             {/* Cast */}
-            <p className="card-text fs-1 fw-bold">Cast: {card.cast}</p>
-            {/* Genre */}
-            <p className="card-text fs-1 fw-bold">Genre: {card.genre}</p>
+            <p className="card-text fs-1 fw-bold"><span className='movie-thingy'>Cast:</span> {card.cast.slice(0, 4)}</p>
             {/* Language(s) */}
-            <p className="card-text fs-1 fw-bold">
-              Language(s): {card.language}
+            <p className="card-text fs-1 fw-bold"><span className='movie-thingy'>Language(s):</span> {card.language}
             </p>
             {/* Director */}
-            <p className="card-text fs-1 fw-bold">Director: {card.director}</p>
+            <p className="card-text fs-1 fw-bold"><span className='movie-thingy'>Director:</span> {card.director}</p>
             {/* Runtime */}
-            <p className="card-text fs-1 fw-bold">Runtime: {card.runtime}</p>
+            <p className="card-text fs-1 fw-bold"><span className='movie-thingy'>Runtime:</span> {card.runtime}</p>
             {/* Modal appear ON-CLICK */}
-            <a href="#" className="card-text fs-1 align-self-end">
-              Click for more info
+            <a href="#" className="card-text fs-1 align-self-end"><span className='click-more'>Click for more info</span>
             </a>
           </div>
         </div>
