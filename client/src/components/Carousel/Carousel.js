@@ -1,8 +1,14 @@
-import * as React from 'react';
-import './carousel.css';
-import { Carousel } from 'react-bootstrap';
-import InputBox from '../InputBox/InputBox';
-import Grid from '@mui/material/Grid';
+import * as React from "react";
+import "./carousel.css";
+import { Carousel } from "react-bootstrap";
+import InputBox from "../InputBox/InputBox";
+import Grid from "@mui/material/Grid";
+import { requirePropFactory } from "@mui/material";
+require('dotenv').config();
+const api_key = process.env.REACT_APP_API_KEY
+
+console.log(process.env.REACT_APP_API_KEY)
+
 
 function AppCarousel() {
   const [movieList, setMovieList] = React.useState([]);
