@@ -165,6 +165,9 @@ function InputBox() {
     setInputData(e.target.value);
   };
 
+  // console log
+  useEffect(() => console.log(usernames), [usernames]);
+
   const handleSubmit = async () => {
     try {
       const { data } = await getUser({
@@ -189,10 +192,9 @@ function InputBox() {
       <Stack className={classes.helperText} noValidate autoComplete="off">
         {/* where the usernames will popular */}
         <div className="list">
-          {usernames.map((item) => {
-            return <p key="{item.value}">{item.value}</p>;
+          {usernames.map((currentUsername) => {
+            return <p key={currentUsername}>{currentUsername}</p>;
           })}
-          PLACEHOLDER
         </div>
 
         {/* input box for the usernames */}
@@ -269,9 +271,9 @@ function InputBox() {
         <div className="row card-row">
           <div className="header-container">
             {/* note: Could make it so each 3 usernames populate in place of 'you' (ex. Here's some movies a, b, and c have in common) */}
-            <p className="header-text">
+            {/* <p className="header-text">
               Here's some movies you have in common...
-            </p>
+            </p> */}
           </div>
 
           {/* ...mapping over each object in the `Cards` array of objects */}

@@ -2,6 +2,7 @@ header {
   background-color: rgba(20, 24, 28, 0.6);
   margin: 0;
   padding: 0;
+  padding-bottom: 1px;
 }
 
 h1 {
@@ -13,7 +14,7 @@ h1 {
   color: #fff;
   position: relative;
   top: 7px;
-  left: .2em;
+  left: 0.2em;
 }
 
 .single-word {
@@ -21,8 +22,8 @@ h1 {
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   opacity: 1;
 }
 
@@ -32,7 +33,7 @@ h1 {
     text-align: center;
     justify-content: center;
     padding: 10px 10px 30px 10px;
-    background-color:rgba(20, 24, 28, 0.8);
+    background-color: rgba(20, 24, 28, 0.8);
   }
 
   .logo {
@@ -44,4 +45,4 @@ h1 {
     position: relative;
     top: 16px;
   }
-};
+} ;
