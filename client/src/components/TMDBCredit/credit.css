@@ -1,43 +1,43 @@
 /* Section Container */
 .credit-container {
-    position: relative;
-    top: 30px;
+  position: relative;
+  top: 30px;
 }
 
 /* Logo */
 .logo-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30px;
 }
 
 .tmdb-logo {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
 }
 
 /* Text */
 .credit-txt-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2em 0 0 0;
-    top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em 0 0 0;
+  top: 30px;
 }
 
 .credit-text {
-    font-size: 20px;
-    display: flex;
+  font-size: 15px;
+  display: flex;
 }

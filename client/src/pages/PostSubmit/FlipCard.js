@@ -9,7 +9,7 @@ function FlipCard({ card }) {
     <div className="flip-card-outer">
       <div
         className={cn('flip-card-inner', {
-          'hover-trigger': card.variant === 'hover',
+          'hover-trigger': 'hover',
         })}
       >
         {/* Front Card */}

@@ -3,71 +3,88 @@
 
 .carousel-input-container {
   display: flex;
-  padding: 30px;
   width: 100%;
 }
 
 .carousel-container {
   display: block;
   width: 100%;
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 .carousel-txt-container {
-    display: flex;
-    width: 100%;
+  display: flex;
+  padding-top: 10px;
+  width: 100%;
 }
 
 .carousel-text {
   font-family: 'Karla', sans-serif;
-    font-size: 50px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
+  font-size: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .night {
   color: var(--red);
 }
 
+.day {
+  padding-left: 1%;
+}
+
+.popular-movies {
+  font-family: 'Karla', sans-serif;
+  font-size: 20px;
+  width: 100%;
+  text-align: center;
+}
+
 .img {
-  width: 50%;
-  height: 400px;
+  width: 30%;
+  height: 700px;
   margin: auto;
+  padding-bottom: 3%;
 }
 
 .input-box-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 8%;
+  /* background-color: white; */
+  padding: 30px;
+  /* padding-top: 8%; */
 }
 
 /* Media Query */
- @media screen and (max-width: 1199px) {
+@media screen and (max-width: 1199px) {
   .carousel-container {
     width: 70%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    transition: .5s ease-in-out;
-    }
-
-    .welcome {
-      width: 100%;
-    }
+    transition: 0.5s ease-in-out;
+  }
+  .carousel-container img {
+    width: 100%;
   }
 
-  @media screen and (max-width: 767px) {
-    .carousel-container {
-      width: 90%;
-      transition: .5s ease-in-out;
-      }
+  .welcome {
+    width: 100%;
   }
+}
 
-  @media screen and (max-width: 615px) {
-    .carousel-container {
-      transition: .5s ease-in-out;
-      }
+@media screen and (max-width: 767px) {
+  .carousel-container {
+    width: 90%;
+    transition: 0.5s ease-in-out;
   }
+}
+
+@media screen and (max-width: 615px) {
+  .carousel-container {
+    transition: 0.5s ease-in-out;
+  }
+}
