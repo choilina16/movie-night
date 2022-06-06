@@ -1,4 +1,4 @@
-# The Theorist
+# movie night
   ## Table of Contents
   [description](#description)
   [installation](#installation)
